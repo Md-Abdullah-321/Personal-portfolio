@@ -1,21 +1,40 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Navbar from "./NavbarForLargeDevice";
-import MediumDeviceNavbar from "./NavbarForMediumDevice";
-import NavbarForSmallDevices from "./NavbarForSmallDevices";
+import dynamic from 'next/dynamic';
+import { Suspense, useEffect, useState } from "react";
+
+const Navbar = dynamic(() => import("./NavbarForLargeDevice"));
+const MediumDeviceNavbar = dynamic(() => import("./NavbarForMediumDevice"));
+const NavbarForSmallDevices = dynamic(() => import("./NavbarForSmallDevices"));
 
 export const ReturnCurrentNavbar = () => {
-    const [width, setWidth] = useState(null);
-    useEffect(()=> {
-        window.addEventListener('resize', ()=> {
-            setWidth(window.innerWidth);
-        })
-     }, [])
+  const [width, setWidth] = useState(null);
 
-     return <>
-        {
-        width > 1024? <Navbar/>: width >= 768? <MediumDeviceNavbar/>: <NavbarForSmallDevices/>
-     }
-     </>
-}
+  useEffect(() => {
+    const handleResize = () => setWidth(window.innerWidth);
+
+    if (typeof window !== 'undefined') {
+      // Set initial width
+      setWidth(window.innerWidth);
+      window.addEventListener('resize', handleResize);
+
+      return () => window.removeEventListener('resize', handleResize);
+    }
+  }, []);
+
+  if (width === null) {
+    return <div>Loading...</div>;
+  }
+
+  return (
+    <Suspense  fallback={<div>Loading...</div>}>
+      {width > 1024 ? (
+        <Navbar />
+      ) : width >= 768 ? (
+        <MediumDeviceNavbar />
+      ) : (
+        <NavbarForSmallDevices />
+      )}
+    </Suspense>
+  );
+};
