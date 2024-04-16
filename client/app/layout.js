@@ -1,4 +1,5 @@
 import { Inter } from "next/font/google";
+import ReturnFooter from "./footer";
 import "./globals.css";
 import { ReturnCurrentNavbar } from "./navbar/ReturnCurrentNavbar";
 
@@ -17,6 +18,7 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         {<ReturnCurrentNavbar/>}
         {children}
+        {<ReturnFooter/>}
         </body>
     </html>
   );
