@@ -20,7 +20,7 @@ export default function MediumDeviceNavbar() {
                     </button>
             </div>
             {
-                toggleTabMenu &&  <div className="fixed w-4/6 flex flex-col justify-between items-end bg-black h-screen right-0 top-0 list-none opacity-90">
+                toggleTabMenu &&  <div className="fixed w-4/6 flex flex-col justify-between items-end bg-black h-screen right-0 top-0 list-none opacity-90 z-50">
                 <div className="w-full">
                 <div className="flex justify-between items-center w-full h-20" style={ButtonBackground}>
                     <p className="ml-10 text-3xl uppercase  font-extrabold">Md Abdullah</p>

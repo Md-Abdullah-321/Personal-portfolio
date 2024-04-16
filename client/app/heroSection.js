@@ -10,7 +10,7 @@ const ButtonBackground = {
 
 export default function HeroSection() {
   return (
-    <div className="min-h-[600px] flex flex-col-reverse md:flex-row justify-around items-center gap-x-10 p-6 md:p-0" style={ButtonBackground}>
+    <div className="min-h-[600px] flex flex-col-reverse md:flex-row justify-around items-center gap-x-10 p-6 lg:p-0 font-sans" style={ButtonBackground}>
       {/* text, button and links  */}
       <div className='md:w-1/2 flex flex-col gap-y-2 md:gap-y-4 mt-10 md:mt-0'>
         <h5 className='text-white text-2xl font-semibold'>I am Md Abdullah</h5>
