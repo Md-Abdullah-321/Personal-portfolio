@@ -21,45 +21,47 @@ export default function MediumDeviceNavbar() {
             </div>
             {
                 toggleTabMenu &&  <div className="fixed w-4/6 flex flex-col justify-between items-end bg-black h-screen right-0 top-0 list-none opacity-90">
+                <div className="w-full">
                 <div className="flex justify-between items-center w-full h-20" style={ButtonBackground}>
                     <p className="ml-10 text-3xl uppercase  font-extrabold">Md Abdullah</p>
                     <span className="bg-white mr-1.5 px-4 py-2 text-black text-3xl cursor-pointer fixed right-2 top-4" onClick={() => setToggleTabMenu(false)}>&#10006;</span>
                 </div>
-            <nav className="w-full px-10">
-            <li className="hover:bg-gray-500 w-full flex justify-end items-center px-2 py-1.5 rounded-sm">
-                <a href="#">Home</a>
-                </li> 
-                <hr />
-                <br />
+                <nav className="w-full px-10 mt-10">
                 <li className="hover:bg-gray-500 w-full flex justify-end items-center px-2 py-1.5 rounded-sm">
-                    <a href="#">About</a>
-                </li> 
-                   <hr />
-                     <br />
-                <li className="hover:bg-gray-500 w-full flex justify-end items-center px-2 py-1.5 rounded-sm">
-                    <a href="#">Skills</a>
-                </li> 
-                   <hr />
-                     <br />
-                <li className="hover:bg-gray-500 w-full flex justify-end items-center px-2 py-1.5 rounded-sm">
-                    <a href="#">Services</a>
-                </li> 
-                   <hr />
-                     <br />
-                <li className="hover:bg-gray-500 w-full flex justify-end items-center px-2 py-1.5 rounded-sm">
-                    <a href="#">Projects</a>
-                </li> 
-                   <hr />
-                     <br />
-                <li className="hover:bg-gray-500 w-full flex justify-end items-center px-2 py-1.5 rounded-sm">
-                    <a href="#">Contact</a>
-                </li>
-                <hr />
-                     <br />
-                <li className="w-full flex justify-end items-center">
-                    <button style={ButtonBackground} className="px-12 py-2 hover:bg-white ">Hire Me!</button>
-                </li>
-            </nav>
+                    <a href="#">Home</a>
+                    </li> 
+                    <hr />
+                    <br />
+                    <li className="hover:bg-gray-500 w-full flex justify-end items-center px-2 py-1.5 rounded-sm">
+                        <a href="#">About</a>
+                    </li> 
+                    <hr />
+                        <br />
+                    <li className="hover:bg-gray-500 w-full flex justify-end items-center px-2 py-1.5 rounded-sm">
+                        <a href="#">Skills</a>
+                    </li> 
+                    <hr />
+                        <br />
+                    <li className="hover:bg-gray-500 w-full flex justify-end items-center px-2 py-1.5 rounded-sm">
+                        <a href="#">Services</a>
+                    </li> 
+                    <hr />
+                        <br />
+                    <li className="hover:bg-gray-500 w-full flex justify-end items-center px-2 py-1.5 rounded-sm">
+                        <a href="#">Projects</a>
+                    </li> 
+                    <hr />
+                        <br />
+                    <li className="hover:bg-gray-500 w-full flex justify-end items-center px-2 py-1.5 rounded-sm">
+                        <a href="#">Contact</a>
+                    </li>
+                    <hr />
+                        <br />
+                    <li className="w-full flex justify-end items-center">
+                        <button style={ButtonBackground} className="px-12 py-2 hover:bg-white ">Hire Me!</button>
+                    </li>
+                </nav>
+                </div>
 
             <div className="w-full flex items-center gap-x-4 py-4 px-10">
                 <a href="https://www.facebook.com/profile.php?id=100086184884085" className="bg-white p-2 rounded-full hover:bg-gray-200"><FaFacebookSquare className="w-6 h-6 text-blue-600"/></a>
