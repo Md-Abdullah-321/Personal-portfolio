@@ -1,4 +1,5 @@
 "use client"
+import Link from "next/link";
 import { useState } from "react";
 import { AiOutlinePicture } from "react-icons/ai";
 import { CiHome, CiUser } from "react-icons/ci";
@@ -22,30 +23,30 @@ export default function NavbarForSmallDevices () {
                 <div className="flex justify-evenly items-center">
                     <div className="flex flex-col justify-center items-center">
                         <CiHome className="w-6 h-6 font-medium"/>
-                        <a href="#">Home</a>
+                        <Link href="#">Home</Link>
                     </div>
                     <div className="flex flex-col justify-center items-center">
                     <CiUser className="w-6 h-6 font-medium"/>
-                        <a href="#">About</a>
+                        <Link href="#">About</Link>
                     </div>
                     <div className="flex flex-col justify-center items-center">
                     <IoDocumentTextOutline className="w-6 h-6 font-medium"/>
-                        <a href="#">Skills</a>
+                        <Link href="#">Skills</Link>
                     </div>
                 </div>
                 
                 <div className="flex justify-evenly items-center">
                     <div className="flex flex-col justify-center items-center">
                     <MdOutlineHomeRepairService className="w-6 h-6 font-medium"/>
-                        <a href="#">Services</a>
+                        <Link href="#">Services</Link>
                     </div>
                     <div className="flex flex-col justify-center items-center">
                     <AiOutlinePicture className="w-6 h-6 font-medium"/>
-                        <a href="#">Portfolio</a>
+                        <Link href="#">Portfolio</Link>
                     </div>
                     <div className="flex flex-col justify-center items-center">
                     <VscSend className="w-6 h-6 font-medium"/>
-                        <a href="#">Contact</a>
+                        <Link href="#">Contact</Link>
                     </div>
                 </div>
                 <div className="flex justify-end items-center w-full">

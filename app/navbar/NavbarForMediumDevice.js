@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link";
 import { useState } from "react";
 import { FaFacebookSquare, FaGithubSquare, FaLinkedin, FaWhatsappSquare } from "react-icons/fa";
 
@@ -33,28 +34,23 @@ export default function MediumDeviceNavbar() {
                     <hr />
                     <br />
                     <li className="hover:bg-gray-500 w-full flex justify-end items-center px-2 py-1.5 rounded-sm">
-                        <a href="#">About</a>
+                        <Link href="#">About</Link>
                     </li> 
                     <hr />
                         <br />
                     <li className="hover:bg-gray-500 w-full flex justify-end items-center px-2 py-1.5 rounded-sm">
-                        <a href="#">Skills</a>
+                        <Link href="#">Skills</Link>
                     </li> 
                     <hr />
                         <br />
                     <li className="hover:bg-gray-500 w-full flex justify-end items-center px-2 py-1.5 rounded-sm">
-                        <a href="#">Services</a>
+                        <Link href="#">Services</Link>
                     </li> 
                     <hr />
                         <br />
                     <li className="hover:bg-gray-500 w-full flex justify-end items-center px-2 py-1.5 rounded-sm">
-                        <a href="#">Projects</a>
+                        <Link href="#">Projects</Link>
                     </li> 
-                    <hr />
-                        <br />
-                    <li className="hover:bg-gray-500 w-full flex justify-end items-center px-2 py-1.5 rounded-sm">
-                        <a href="#">Contact</a>
-                    </li>
                     <hr />
                         <br />
                     <li className="w-full flex justify-end items-center">

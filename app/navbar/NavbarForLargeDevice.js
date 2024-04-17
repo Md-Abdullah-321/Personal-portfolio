@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const ButtonBackground = {
     background: 'rgb(66,29,136)',
     backgroundImage: 'linear-gradient(90deg, rgba(66,29,136,1) 0%, rgba(59,18,135,1) 50%, rgba(0,0,0,0.7) 100%)'
@@ -11,23 +13,20 @@ export default function Navbar (){
             </div>
             <ul className="flex items-center gap-x-6">
                 <li>
-                    <a href="#">Home</a>
+                    <Link href="#">Home</Link>
                 </li> 
                 <li>
-                    <a href="#">About</a>
+                    <Link href="#">About</Link>
                 </li> 
                 <li>
-                    <a href="#">Skills</a>
+                    <Link href="#">Skills</Link>
                 </li> 
                 <li>
-                    <a href="#">Services</a>
+                    <Link href="#">Services</Link>
                 </li> 
                 <li>
-                    <a href="#">Projects</a>
+                    <Link href="#">Projects</Link>
                 </li> 
-                <li>
-                    <a href="#">Contact</a>
-                </li>
                 <li>
                     <button style={ButtonBackground} className="px-6 py-1.5 rounded-3xl hover:bg-white ">Hire Me!</button>
                 </li>
