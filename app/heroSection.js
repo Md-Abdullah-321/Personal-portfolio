@@ -15,7 +15,7 @@ export default function HeroSection() {
       <div className='md:w-1/2 flex flex-col gap-y-2 md:gap-y-4 mt-10 md:mt-0'>
         <h5 className='text-white text-2xl font-semibold'>I am Md Abdullah</h5>
         <h2 className='bg-gradient-to-r from-violet-600 to-violet-300 ... inline-block ... text-transparent ... bg-clip-text text-4xl md:text-5xl font-extrabold'>Full Stack Web Developer</h2>
-        <p className='text-gray-300'>Web expert with {new Date().getFullYear() - 2021} years' experience, adept at problem-solving and innovation. Passionate about pushing boundaries and actively engaged in the developer community.</p>
+        <p className='text-gray-300'>Web expert with {new Date().getFullYear() - 2022} years' experience, adept at problem-solving and innovation. Passionate about pushing boundaries and actively engaged in the developer community.</p>
 
         <div className='flex items-center gap-x-2 md:gap-x-3 mt-10 transition-all'>
             <button className='text-violet-700 flex items-center gap-x-2 border border-violet-700 px-3 py-2 rounded-3xl hover:bg-violet-700 hover:text-white'>Download CV <MdOutlineFileDownload className='w-5 h-5'/></button>

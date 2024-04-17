@@ -5,21 +5,15 @@ import { ReturnCurrentNavbar } from "./navbar/ReturnCurrentNavbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata = {
-  title: "Md Abdullah",
-  description: "Personal Portfolio",
-};
 
-
-
-export default function RootLayout({ children }) {
+export default function RootLayout({ children, metadata }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        {<ReturnCurrentNavbar/>}
+        <ReturnCurrentNavbar />
         {children}
-        {<ReturnFooter/>}
-        </body>
+        <ReturnFooter />
+      </body>
     </html>
   );
 }
