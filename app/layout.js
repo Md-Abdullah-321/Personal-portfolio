@@ -4,11 +4,19 @@ import "./globals.css";
 import { ReturnCurrentNavbar } from "./navbar/ReturnCurrentNavbar";
 
 const inter = Inter({ subsets: ["latin"] });
+const metadata = {
+  title: "Md Abdullah",
+  description: "Personal Portfolio"
+}
 
 
-export default function RootLayout({ children, metadata }) {
+export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <title>{metadata.title}</title>
+        <meta name="description" content={metadata.description} />
+      </head>
       <body className={inter.className}>
         <ReturnCurrentNavbar />
         {children}
