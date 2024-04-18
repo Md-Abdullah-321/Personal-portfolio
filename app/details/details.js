@@ -18,14 +18,14 @@ export default function MyDetails() {
           <h2 className="text-5xl font-extrabold">All over my details find here...</h2>
 
           <div className="mt-5 flex flex-col justify-center items-center gap-y-2">
-            <div className="w-full bg-white flex justify-between items-center px-5 py-3 font-semibold group transition-all rounded-md cursor-pointer hover:bg-black hover:text-white" onClick={() => setSection("about")}>About Me <GoArrowRight  className='w-5 h-5 -rotate-45 group-hover:rotate-0'/></div>            
+            <div className={section === "about"? "w-full bg-black text-white flex justify-between items-center px-5 py-3 font-semibold group transition-all rounded-md cursor-pointer hover:bg-black hover:text-white": "w-full bg-white flex justify-between items-center px-5 py-3 font-semibold group transition-all rounded-md cursor-pointer hover:bg-black hover:text-white"} onClick={() => setSection("about")}>About Me <GoArrowRight  className='w-5 h-5 -rotate-45 group-hover:rotate-0'/></div>            
             
-            <div className="w-full bg-white flex justify-between items-center px-5 py-3 font-semibold group transition-all rounded-md cursor-pointer hover:bg-black hover:text-white" onClick={() => setSection("education")}> Education <GoArrowRight  className='w-5 h-5 -rotate-45 group-hover:rotate-0'/></div>  
+            <div className={section === "education"? "w-full bg-black text-white flex justify-between items-center px-5 py-3 font-semibold group transition-all rounded-md cursor-pointer hover:bg-black hover:text-white": "w-full bg-white flex justify-between items-center px-5 py-3 font-semibold group transition-all rounded-md cursor-pointer hover:bg-black hover:text-white"} onClick={() => setSection("education")}> Education <GoArrowRight  className='w-5 h-5 -rotate-45 group-hover:rotate-0'/></div>  
 
-            <div className="w-full bg-white flex justify-between items-center px-5 py-3 font-semibold group transition-all rounded-md cursor-pointer hover:bg-black hover:text-white" onClick={() => setSection("experience")}> Experience <GoArrowRight  className='w-5 h-5 -rotate-45 group-hover:rotate-0'/></div>
+            <div className={section === "experience"? "w-full bg-black text-white flex justify-between items-center px-5 py-3 font-semibold group transition-all rounded-md cursor-pointer hover:bg-black hover:text-white": "w-full bg-white flex justify-between items-center px-5 py-3 font-semibold group transition-all rounded-md cursor-pointer hover:bg-black hover:text-white"} onClick={() => setSection("experience")}> Experience <GoArrowRight  className='w-5 h-5 -rotate-45 group-hover:rotate-0'/></div>
           </div>
         </div>
-        <div className="p-6 md:p-0 md:w-8/12">
+        <div className="p-6 md:p-0 w-full md:w-8/12">
           {section === "about" && <DetailsAbout/>}
           {section === "education" && <Education/>}
           {section === "experience" && <Experience/>}

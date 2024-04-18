@@ -1,7 +1,7 @@
 
 export default function Education() {
   return (
-    <div>
+    <div className="w-full">
       <h2 className="text-3xl font-bold">Education</h2>
       <div className="flex flex-col gap-y-2">
         <div className="flex bg-gray-200 p-5 rounded-md mt-5">

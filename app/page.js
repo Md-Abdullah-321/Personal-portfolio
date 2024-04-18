@@ -8,6 +8,7 @@ export default function Home() {
       <HeroSection/>
       <About/>
       <MyDetails/>
+      <div className="h-10 lg:hidden"></div>
     </>
   );
 }
