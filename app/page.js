@@ -1,4 +1,5 @@
 import About from "./about";
+import MyDetails from "./details/details";
 import HeroSection from "./heroSection";
 
 export default function Home() {
@@ -6,6 +7,7 @@ export default function Home() {
     <>
       <HeroSection/>
       <About/>
+      <MyDetails/>
     </>
   );
 }
