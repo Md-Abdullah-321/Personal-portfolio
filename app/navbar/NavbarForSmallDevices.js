@@ -23,30 +23,30 @@ export default function NavbarForSmallDevices () {
                 <div className="flex justify-evenly items-center">
                     <div className="flex flex-col justify-center items-center">
                         <CiHome className="w-6 h-6 font-medium"/>
-                        <Link href="#home">Home</Link>
+                        <Link href="#home" onClick={() => setToggleTabMenu(false)}>Home</Link>
                     </div>
                     <div className="flex flex-col justify-center items-center">
                     <CiUser className="w-6 h-6 font-medium"/>
-                        <Link href="#about">About</Link>
+                        <Link href="#about" onClick={() => setToggleTabMenu(false)}>About</Link>
                     </div>
                     <div className="flex flex-col justify-center items-center">
                     <IoDocumentTextOutline className="w-6 h-6 font-medium"/>
-                        <Link href="#skills">Skills</Link>
+                        <Link href="#skills" onClick={() => setToggleTabMenu(false)}>Skills</Link>
                     </div>
                 </div>
                 
                 <div className="flex justify-evenly items-center">
                     <div className="flex flex-col justify-center items-center">
                     <MdOutlineHomeRepairService className="w-6 h-6 font-medium"/>
-                        <Link href="#services">Services</Link>
+                        <Link href="#services" onClick={() => setToggleTabMenu(false)}>Services</Link>
                     </div>
                     <div className="flex flex-col justify-center items-center">
                     <AiOutlinePicture className="w-6 h-6 font-medium"/>
-                        <Link href="#portfolio">Portfolio</Link>
+                        <Link href="#portfolio" onClick={() => setToggleTabMenu(false)}>Portfolio</Link>
                     </div>
                     <div className="flex flex-col justify-center items-center">
                     <VscSend className="w-6 h-6 font-medium"/>
-                        <Link href="#contact">Contact</Link>
+                        <Link href="#contact" onClick={() => setToggleTabMenu(false)}>Contact</Link>
                     </div>
                 </div>
                 <div className="flex justify-end items-center w-full">
