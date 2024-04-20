@@ -9,10 +9,10 @@ import SkillCart from "./skillCart";
 
 export default function Skills() {
   return (
-    <div className="md:min-h-[700px] flex flex-col justify-center md:w-11/12 lg:w-9/12 mx-auto w-full py-20 px-4 md:px-0">
+    <div className="md:min-h-[700px] flex flex-col justify-center w-full md:w-11/12 lg:w-9/12 mx-auto py-20 px-4 md:px-0">
       <div className="flex flex-col justify-center items-center w-full">
-        <h2 className=" uppercase text-6xl md:text-8xl font-extrabold text-gray-200">Experience</h2>
-        <h3 className="absolute text-4xl md:text-5xl uppercase font-extrabold -mt-12 md:-mt-4 bg-gradient-to-r from-violet-600 to-violet-300 ... inline-block ... text-transparent ... bg-clip-text">Skills</h3>
+        <h2 className=" uppercase text-5xl sm:text-6xl md:text-8xl font-extrabold text-gray-200">Experience</h2>
+        <h3 className="absolute text-3xl sm:text-4xl md:text-5xl uppercase font-extrabold -mt-[70px] sm:-mt-12 md:-mt-4 bg-gradient-to-r from-violet-600 to-violet-300 ... inline-block ... text-transparent ... bg-clip-text">Skills</h3>
         <p className="text-gray-600 text-center">Programming Languages, Fraeworks, Libraries, Tools and Technologies I'm working on.</p>
       </div>
 
