@@ -29,32 +29,32 @@ export default function MediumDeviceNavbar() {
                 </div>
                 <nav className="w-full px-10 mt-10">
                 <li className="hover:bg-gray-500 w-full flex justify-end items-center px-2 py-1.5 rounded-sm">
-                    <a href="#home">Home</a>
+                    <Link href="#home" className="w-full text-end" onClick={() => setToggleTabMenu(false)}>Home</Link>
                     </li> 
                     <hr />
                     <br />
                     <li className="hover:bg-gray-500 w-full flex justify-end items-center px-2 py-1.5 rounded-sm">
-                        <Link href="#about">About</Link>
+                        <Link href="#about" className="w-full text-end" onClick={() => setToggleTabMenu(false)}>About</Link>
                     </li> 
                     <hr />
                         <br />
                     <li className="hover:bg-gray-500 w-full flex justify-end items-center px-2 py-1.5 rounded-sm">
-                        <Link href="#skills">Skills</Link>
+                        <Link href="#skills" className="w-full text-end" onClick={() => setToggleTabMenu(false)}>Skills</Link>
                     </li> 
                     <hr />
                         <br />
                     <li className="hover:bg-gray-500 w-full flex justify-end items-center px-2 py-1.5 rounded-sm">
-                        <Link href="#services">Services</Link>
+                        <Link href="#services" className="w-full text-end" onClick={() => setToggleTabMenu(false)}>Services</Link>
                     </li> 
                     <hr />
                         <br />
                     <li className="hover:bg-gray-500 w-full flex justify-end items-center px-2 py-1.5 rounded-sm">
-                        <Link href="#portfolio">Portfolio</Link>
+                        <Link href="#portfolio" className="w-full text-end" onClick={() => setToggleTabMenu(false)}>Portfolio</Link>
                     </li> 
                     <hr />
                         <br />
                     <li className="w-full flex justify-end items-center">
-                        <button style={ButtonBackground} className="px-12 py-2 hover:bg-white ">Hire Me!</button>
+                        <button style={ButtonBackground} className="px-12 py-2 hover:bg-white " onClick={() => setToggleTabMenu(false)}>Hire Me!</button>
                     </li>
                 </nav>
                 </div>
