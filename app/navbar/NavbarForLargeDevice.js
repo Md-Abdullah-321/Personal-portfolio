@@ -7,25 +7,25 @@ const ButtonBackground = {
 
 export default function Navbar (){
     return (
-        <nav className="flex justify-between items-center px-20 h-20 bg-[#0F0715] text-white text-lg">
+        <nav className="flex justify-between items-center px-20 h-20 bg-[#0F0715] text-white text-lg fixed w-full z-50">
             <div>
                 <p>abdullah.dev.it@gmail.com</p>
             </div>
             <ul className="flex items-center gap-x-6">
                 <li>
-                    <Link href="#">Home</Link>
+                    <Link href="#home">Home</Link>
                 </li> 
                 <li>
-                    <Link href="#">About</Link>
+                    <Link href="#about">About</Link>
                 </li> 
                 <li>
-                    <Link href="#">Skills</Link>
+                    <Link href="#skills">Skills</Link>
                 </li> 
                 <li>
-                    <Link href="#">Services</Link>
+                    <Link href="#services">Services</Link>
                 </li> 
                 <li>
-                    <Link href="#">Projects</Link>
+                    <Link href="#portfolio">Portfolio</Link>
                 </li> 
                 <li>
                     <button style={ButtonBackground} className="px-6 py-1.5 rounded-3xl hover:bg-white ">Hire Me!</button>

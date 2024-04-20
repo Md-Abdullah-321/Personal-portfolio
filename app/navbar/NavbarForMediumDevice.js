@@ -29,27 +29,27 @@ export default function MediumDeviceNavbar() {
                 </div>
                 <nav className="w-full px-10 mt-10">
                 <li className="hover:bg-gray-500 w-full flex justify-end items-center px-2 py-1.5 rounded-sm">
-                    <a href="#">Home</a>
+                    <a href="#home">Home</a>
                     </li> 
                     <hr />
                     <br />
                     <li className="hover:bg-gray-500 w-full flex justify-end items-center px-2 py-1.5 rounded-sm">
-                        <Link href="#">About</Link>
+                        <Link href="#about">About</Link>
                     </li> 
                     <hr />
                         <br />
                     <li className="hover:bg-gray-500 w-full flex justify-end items-center px-2 py-1.5 rounded-sm">
-                        <Link href="#">Skills</Link>
+                        <Link href="#skills">Skills</Link>
                     </li> 
                     <hr />
                         <br />
                     <li className="hover:bg-gray-500 w-full flex justify-end items-center px-2 py-1.5 rounded-sm">
-                        <Link href="#">Services</Link>
+                        <Link href="#services">Services</Link>
                     </li> 
                     <hr />
                         <br />
                     <li className="hover:bg-gray-500 w-full flex justify-end items-center px-2 py-1.5 rounded-sm">
-                        <Link href="#">Projects</Link>
+                        <Link href="#portfolio">Portfolio</Link>
                     </li> 
                     <hr />
                         <br />

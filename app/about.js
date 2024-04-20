@@ -3,7 +3,7 @@ import { GoArrowRight } from "react-icons/go";
 
 export default function About() {
   return (
-    <div className="lg:w-9/12 mx-auto flex flex-col md:flex-row justify-between items-center md:h-[700px] font-sans px-4 py-20 md:py-0 gap-x-4">
+    <div className="lg:w-9/12 mx-auto flex flex-col md:flex-row justify-between items-center md:h-[700px] font-sans px-4 py-20 md:py-0 gap-x-4" id='about'>
       <div className='md:w-1/2'>
         <Image 
             src="/about-left.png"

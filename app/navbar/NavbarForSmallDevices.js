@@ -23,30 +23,30 @@ export default function NavbarForSmallDevices () {
                 <div className="flex justify-evenly items-center">
                     <div className="flex flex-col justify-center items-center">
                         <CiHome className="w-6 h-6 font-medium"/>
-                        <Link href="#">Home</Link>
+                        <Link href="#home">Home</Link>
                     </div>
                     <div className="flex flex-col justify-center items-center">
                     <CiUser className="w-6 h-6 font-medium"/>
-                        <Link href="#">About</Link>
+                        <Link href="#about">About</Link>
                     </div>
                     <div className="flex flex-col justify-center items-center">
                     <IoDocumentTextOutline className="w-6 h-6 font-medium"/>
-                        <Link href="#">Skills</Link>
+                        <Link href="#skills">Skills</Link>
                     </div>
                 </div>
                 
                 <div className="flex justify-evenly items-center">
                     <div className="flex flex-col justify-center items-center">
                     <MdOutlineHomeRepairService className="w-6 h-6 font-medium"/>
-                        <Link href="#">Services</Link>
+                        <Link href="#services">Services</Link>
                     </div>
                     <div className="flex flex-col justify-center items-center">
                     <AiOutlinePicture className="w-6 h-6 font-medium"/>
-                        <Link href="#">Portfolio</Link>
+                        <Link href="#portfolio">Portfolio</Link>
                     </div>
                     <div className="flex flex-col justify-center items-center">
                     <VscSend className="w-6 h-6 font-medium"/>
-                        <Link href="#">Contact</Link>
+                        <Link href="#contact">Contact</Link>
                     </div>
                 </div>
                 <div className="flex justify-end items-center w-full">
