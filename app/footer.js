@@ -6,22 +6,22 @@ const Footer = () => {
     <footer className="bg-[#0F0715] flex flex-col gap-y-2 py-4">
         <ul className="flex justify-center items-center gap-x-6 text-white font-semibold">
                 <li>
-                    <a href="#">Home</a>
+                    <a href="#home">Home</a>
                 </li> 
                 <li>
-                    <a href="#">About</a>
+                    <a href="#about">About</a>
                 </li> 
                 <li>
-                    <a href="#">Skills</a>
+                    <a href="#skills">Skills</a>
                 </li> 
                 <li>
-                    <a href="#">Services</a>
+                    <a href="#services">Services</a>
                 </li> 
                 <li>
-                    <a href="#">Projects</a>
+                    <a href="#portfolio">Portfolio</a>
                 </li> 
                 <li>
-                    <a href="#">Contact</a>
+                    <a href="#contact">Contact</a>
                 </li>
             </ul>
             <p className="text-center text-violet-700">@{new Date().getFullYear()} All rights reserved by <span className="font-semibold">Md Abdullah</span></p>
