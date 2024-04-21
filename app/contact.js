@@ -69,13 +69,13 @@ export default function Contact() {
             <div className="mt-10 lg:mt-20">
             <h3 className="text-white uppercase font-semibold">Social info</h3>
             <div className="flex gap-x-6 items-center mt-5">
-                <a href="https://github.com/Md-Abdullah-321" className="bg-[#171717] p-6 rounded-full shadow-md" target="_blank">{<VscGithub className="text-white w-8 h-8 cursor-pointer"/>}</a> 
+                <a href="https://github.com/Md-Abdullah-321" className="bg-[#171717] p-4 sm:p-6 rounded-full shadow-md" target="_blank">{<VscGithub className="text-white w-8 h-8 cursor-pointer"/>}</a> 
                 
-                <a href="https://www.facebook.com/profile.php?id=100086184884085" className="bg-[#171717] p-6 rounded-full shadow-md" target="_blank">{<FaFacebookSquare className="text-white w-8 h-8 cursor-pointer"/>}</a>
+                <a href="https://www.facebook.com/profile.php?id=100086184884085" className="bg-[#171717] p-4 sm:p-6 rounded-full shadow-md" target="_blank">{<FaFacebookSquare className="text-white w-8 h-8 cursor-pointer"/>}</a>
 
-                <a href="https://www.linkedin.com/in/md-abdullah-1907b8173/"  className="bg-[#171717] p-6 rounded-full shadow-md" target="_blank">{<FaLinkedin className="text-white w-8 h-8 cursor-pointer"/>}</a>
+                <a href="https://www.linkedin.com/in/md-abdullah-1907b8173/"  className="bg-[#171717] p-4 sm:p-6 rounded-full shadow-md" target="_blank">{<FaLinkedin className="text-white w-8 h-8 cursor-pointer"/>}</a>
 
-                <a href="https://wa.me/+8801780073651" className="bg-[#171717] p-6 rounded-full shadow-md" target="_blank">{<FaWhatsappSquare className="text-white w-8 h-8 cursor-pointer"/>}</a>
+                <a href="https://wa.me/+8801780073651" className="bg-[#171717] p-4 sm:p-6 rounded-full shadow-md" target="_blank">{<FaWhatsappSquare className="text-white w-8 h-8 cursor-pointer"/>}</a>
             </div>
             </div>
         </div>
