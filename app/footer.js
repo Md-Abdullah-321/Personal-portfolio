@@ -3,7 +3,7 @@ import { Suspense, useEffect, useState } from "react";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#0F0715] mt-3 flex flex-col gap-y-2 py-2">
+    <footer className="bg-[#0F0715] flex flex-col gap-y-2 py-4">
         <ul className="flex justify-center items-center gap-x-6 text-white font-semibold">
                 <li>
                     <a href="#">Home</a>

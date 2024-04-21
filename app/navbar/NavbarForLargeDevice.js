@@ -28,7 +28,7 @@ export default function Navbar (){
                     <Link href="#portfolio">Portfolio</Link>
                 </li> 
                 <li>
-                    <button style={ButtonBackground} className="px-6 py-1.5 rounded-3xl hover:bg-white ">Hire Me!</button>
+                    <a href="#contact" style={ButtonBackground} className="px-6 py-1.5 rounded-3xl hover:bg-white ">Hire Me!</a>
                 </li>
             </ul>
         </nav>

@@ -54,7 +54,7 @@ export default function MediumDeviceNavbar() {
                     <hr />
                         <br />
                     <li className="w-full flex justify-end items-center">
-                        <button style={ButtonBackground} className="px-12 py-2 hover:bg-white " onClick={() => setToggleTabMenu(false)}>Hire Me!</button>
+                        <a href="#contact" style={ButtonBackground} className="px-12 py-2 hover:bg-white " onClick={() => setToggleTabMenu(false)}>Hire Me!</a>
                     </li>
                 </nav>
                 </div>

@@ -1,4 +1,5 @@
 import About from "./about";
+import Contact from "./contact";
 import MyDetails from "./details/details";
 import HeroSection from "./heroSection";
 import Services from "./services";
@@ -12,7 +13,7 @@ export default function Home() {
       <MyDetails/>
       <Skills/>
       <Services/>
-      <div className="h-10 lg:hidden"></div>
+      <Contact/>
     </>
   );
 }
