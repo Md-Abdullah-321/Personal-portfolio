@@ -26,7 +26,9 @@ export default function Portfolio() {
             <h3 className="absolute text-3xl sm:text-4xl md:text-5xl uppercase font-extrabold md:mt-1.5 bg-gradient-to-r from-violet-600 to-violet-300 ... inline-block ... text-transparent ... bg-clip-text">my recent work</h3>
       </div>
 
+      <div className="w-full lg:w-5/6 mx-auto mt-20 px-5 lg:px-0">
       {projects.length > 0 && <ImageSlider imageArray={projects}/>}
+      </div>
     </div>
   )
 }
