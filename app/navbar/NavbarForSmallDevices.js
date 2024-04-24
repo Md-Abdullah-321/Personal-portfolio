@@ -13,13 +13,13 @@ export default function NavbarForSmallDevices () {
     const [toggleTabMenu, setToggleTabMenu] = useState(false);
     return (
         <div>
-           {!toggleTabMenu &&  <div className="flex justify-between items-center bg-[#0F0715] text-white p-2 fixed bottom-0 w-full">
+           {!toggleTabMenu &&  <div className="flex justify-between items-center bg-[#0F0715] text-white p-2 fixed bottom-0 w-full z-50">
                 <p className="text-lg">Md Abdullah</p>
                 <IoGridOutline className="w-6 h-6 cursor-pointer" onClick={() => setToggleTabMenu(true)}/>
             </div>}
 
             {
-            toggleTabMenu && <div className="fixed flex flex-col bottom-0 w-full p-4 bg-[#0F0715] text-white rounded-tl-lg rounded-tr-lg gap-4 z-50">
+            toggleTabMenu && <div className="fixed flex flex-col bottom-0 w-full p-4 bg-[#0F0715] text-white rounded-tl-lg rounded-tr-lg gap-4" style="z-index:100">
                 <div className="flex justify-evenly items-center">
                     <div className="flex flex-col justify-center items-center">
                         <CiHome className="w-6 h-6 font-medium"/>

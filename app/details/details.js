@@ -11,7 +11,7 @@ export default function MyDetails() {
   const [section, setSection] = useState("about");
   console.log(section);
   return (
-    <div className="bg-gray-50 font-sans">
+    <div className="bg-gray-50 font-sans ">
       <div className="md:h-[700px] flex flex-col md:flex-row justify-between items-center md:w-11/12 lg:w-9/12 mx-auto ">
         <div className="p-6 md:p-0 md:w-3/12">
           <h5 className="text-orange-500 font-semibold text-xl">Resume</h5>

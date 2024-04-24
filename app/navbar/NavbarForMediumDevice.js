@@ -27,7 +27,7 @@ export default function MediumDeviceNavbar() {
                     <p className="ml-10 text-3xl uppercase  font-extrabold">Md Abdullah</p>
                     <span className="bg-white mr-1.5 px-4 py-2 text-black text-3xl cursor-pointer fixed right-2 top-4" onClick={() => setToggleTabMenu(false)}>&#10006;</span>
                 </div>
-                <nav className="w-full px-10 mt-10">
+                <nav className="w-full px-10 mt-10 z-50">
                 <li className="hover:bg-gray-500 w-full flex justify-end items-center px-2 py-1.5 rounded-sm">
                     <Link href="#home" className="w-full text-end" onClick={() => setToggleTabMenu(false)}>Home</Link>
                     </li> 
