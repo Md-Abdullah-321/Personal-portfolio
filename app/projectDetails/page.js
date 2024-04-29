@@ -47,7 +47,7 @@ function ProjectDetailsContent() {
       {/* project info */}
       <div className="w-full flex flex-col md:flex-row justify-between items-center p-10 gap-x-4">
         <div className="md:w-7/12 lg:w-8/12 flex flex-col gap-y-4">
-          <div className="full md:h-[500px]">
+          <div className="full h-48 md:h-[500px]">
             <img
               src={featureImage}
               alt="Project Image - Md Abdullah"
