@@ -52,7 +52,6 @@ export default function ImageSlider({projects}) {
       <Swiper
         spaceBetween={30}
         loop={true}
-        // centeredSlides={true}
         autoplay={{
           delay: 10000,
           disableOnInteraction: false,
@@ -61,11 +60,11 @@ export default function ImageSlider({projects}) {
         navigation={true}
         modules={[Autoplay, Pagination, Navigation]}
         onAutoplayTimeLeft={onAutoplayTimeLeft}
-        className="h-full"
+        className="min-h-80"
       >
       {projects.map((project, index) => (
-        <SwiperSlide key={index} className='w-full transition-all cursor-pointer rounded-md' style={shadow}>
-          <Image src={project.projectImages[Math.floor(Math.random() * 5)]} alt="" srcSet="" className='w-full rounded-md object-contain border border-violet-200' width={2560} height={1440}/>
+        <SwiperSlide key={index} className='w-full transition-all cursor-pointer rounded-md min-h-80' style={shadow}>
+          <Image src={project.projectImages[Math.floor(Math.random() * 5)]} alt="" srcSet="" className='w-full rounded-md object-cover object-center self-center border border-violet-200 overflow-clip' width={1920} height={1080}/>
           <div className='fixed bottom-0 h-20 bg-violet-100 opacity-90 w-full text-start p-4 text-sm flex flex-col justify-center'>
             <p className='font-semibold mr-2'>Project Name : <span className='text-violet-700 capitalize'>  {project.title}</span>
             </p>
