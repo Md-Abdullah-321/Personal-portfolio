@@ -19,7 +19,7 @@ export default function ProjectDetails() {
     const fetchProject = async () => {
         const res = await fetch(`https://portfolio-server-c0fa.onrender.com/api/project/${id}`);
         const data = await res.json();
-        setProject({...data.payload});
+        setProject({...data?.payload});
         setFeatureImage(data?.payload?.projectImages[0]);
     }
 
@@ -61,16 +61,16 @@ console.log(project);
         {/* right side for details  */}
         <div className="md:w-5/12 lg:w-4/12 h-full flex flex-col md:h-[650px] md:overflow-scroll p-1 mt-5 md:mt-0">
           <div className="flex justify-between items-center">
-          <a href={project.live_url} style={ButtonBackground} className="px-8 lg:px-12 py-2 hover:brightness-125 text-white" target="_blank">Live Side</a>
+          <a href={project?.live_url} style={ButtonBackground} className="px-8 lg:px-12 py-2 hover:brightness-125 text-white" target="_blank">Live Side</a>
           
-          <a href={project.github_url} style={ButtonBackground} className="px-8 lg:px-12 py-2 hover:brightness-125 text-white " target="_blank">Github URL</a>
+          <a href={project?.github_url} style={ButtonBackground} className="px-8 lg:px-12 py-2 hover:brightness-125 text-white " target="_blank">Github URL</a>
           </div>
 
           <div className="w-full mt-5 flex flex-col gap-y-2">
-            <h1 className="text-2xl font-semibold">{project.title}</h1>
+            <h1 className="text-2xl font-semibold">{project?.title}</h1>
             <p className="text-sm text-gray-600 text-justify">
               <strong>Overview: </strong>
-              {project.overview}
+              {project?.overview}
             </p>
             <div className="mt-5">
               <h3 className="flex items-center gap-x-2 text-xl font-semibold"><IoIosShareAlt className="w-6 h-6"/> Features: </h3>
