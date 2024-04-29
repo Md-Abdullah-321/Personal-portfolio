@@ -1,5 +1,7 @@
+"use client";
 
 import { Inter } from "next/font/google";
+import { usePathname } from "next/navigation";
 import ReturnFooter from "./footer";
 import "./globals.css";
 import { ReturnCurrentNavbar } from "./navbar/ReturnCurrentNavbar";
@@ -12,6 +14,7 @@ const metadata = {
 
 
 export default function RootLayout({ children }) {
+  const pathname = usePathname();
   return (
     <html lang="en" style={{ scrollBehavior: 'smooth' }}>
       <head>
@@ -19,9 +22,9 @@ export default function RootLayout({ children }) {
         <meta name="description" content={metadata.description} />
       </head>
       <body className={inter.className}>
-        <ReturnCurrentNavbar />
+       {pathname !== "/projectDetails" &&  <ReturnCurrentNavbar />}
         {children}
-        <ReturnFooter />
+       {pathname !== "/projectDetails" &&  <ReturnFooter />}
       </body>
     </html>
   );

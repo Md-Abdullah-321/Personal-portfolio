@@ -81,6 +81,7 @@ export default function ImageSlider({projects}) {
               query: {
                 id: project._id,
               }
+              
             }} className='hidden group-hover:block text-white px-4 py-2 uppercase brightness-125 hover:brightness-150' style={ButtonBackground}>See Details</Link>
           </div>
         </SwiperSlide>
