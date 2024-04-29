@@ -19,7 +19,8 @@ export default function NavbarForSmallDevices () {
             </div>}
 
             {
-            toggleTabMenu && <div className="fixed flex flex-col bottom-0 w-full p-4 bg-[#0F0715] text-white rounded-tl-lg rounded-tr-lg gap-4" style="z-index:100">
+            toggleTabMenu && <div className="fixed flex flex-col bottom-0 w-full p-4 bg-[#0F0715] text-white rounded-tl-lg rounded-tr-lg gap-4" style={{ zIndex: "100" }}
+            >
                 <div className="flex justify-evenly items-center">
                     <div className="flex flex-col justify-center items-center">
                         <CiHome className="w-6 h-6 font-medium"/>
