@@ -35,17 +35,16 @@ function ProjectDetailsContent() {
     fetchProject();
   }, [id]);
 
-  console.log(project);
 
   return (
     <div className="min-h-screen w-full flex justify-center items-center flex-col">
-      <div className="flex flex-col justify-center items-center w-full">
+      <div className="flex flex-col justify-center items-center w-full mt-10">
         <h2 className="uppercase text-4xl sm:text-5xl md:text-7xl font-extrabold text-gray-200 text-center">Project Details</h2>
         <h3 className="absolute text-2xl sm:text-3xl md:text-4xl uppercase font-extrabold md:mt-1.5 bg-gradient-to-r from-violet-600 to-violet-300 ... inline-block ... text-transparent ... bg-clip-text">See project details</h3>
       </div>
 
       {/* project info */}
-      <div className="w-full flex flex-col md:flex-row justify-between items-center p-10 gap-x-4">
+      <div className="w-full flex flex-col md:flex-row justify-between items-center p-4 sm:p-10 gap-x-4">
         <div className="md:w-7/12 lg:w-8/12 flex flex-col gap-y-4">
           <div className="full h-48 md:h-[500px]">
             <img
