@@ -12,6 +12,14 @@ const ButtonBackground = {
 };
 
 export default function ProjectDetails() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ProjectDetailsContent />
+    </Suspense>
+  );
+}
+
+function ProjectDetailsContent() {
   const [project, setProject] = useState({});
   const [featureImage, setFeatureImage] = useState(null);
   const id = useSearchParams().get("id");
@@ -29,14 +37,6 @@ export default function ProjectDetails() {
 
   console.log(project);
 
-  return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <ProjectDetailsContent featureImage={featureImage} project={project} setFeatureImage={setFeatureImage} />
-    </Suspense>
-  );
-}
-
-function ProjectDetailsContent({ featureImage, project, setFeatureImage }) {
   return (
     <div className="min-h-screen w-full flex justify-center items-center flex-col">
       <div className="flex flex-col justify-center items-center w-full">
