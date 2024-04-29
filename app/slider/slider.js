@@ -69,10 +69,10 @@ export default function ImageSlider({projects}) {
             <p className='font-semibold mr-2'>Project Name : <span className='text-violet-700 capitalize'>  {project.title}</span>
             </p>
             <p><span className='font-semibold'>FrontEnd :</span>
-            {project.frontEnd.map((tech, index) => <span className='mx-1'>{tech}{index < project.frontEnd.length - 1? ",": ""}</span>)}
+            {project.frontEnd.map((tech, index) => <span key={index} className='mx-1'>{tech}{index < project.frontEnd.length - 1? ",": ""}</span>)}
             </p>
             <p><span className='font-semibold'>BackEnd :</span>
-            {project.backEnd.map((tech, index) => <span className='mx-1'>{tech} {index < project.backEnd.length - 1? ",": ""}</span>)}
+            {project.backEnd.map((tech, index) => <span key={index} className='mx-1'>{tech} {index < project.backEnd.length - 1? ",": ""}</span>)}
             </p>
           </div>
           <div className="absolute top-0 left-0 w-full h-full hover:bg-black opacity-50 rounded-md transition-all group flex justify-center items-center">

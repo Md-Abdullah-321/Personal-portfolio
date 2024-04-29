@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
+/* eslint-disable react/jsx-key */
 "use client";
 
 import { useSearchParams } from "next/navigation";
