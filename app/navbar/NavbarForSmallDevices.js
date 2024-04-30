@@ -1,4 +1,5 @@
 "use client"
+import { motion } from "framer-motion";
 import Link from "next/link";
 import { useState } from "react";
 import { AiOutlinePicture } from "react-icons/ai";
@@ -19,7 +20,12 @@ export default function NavbarForSmallDevices () {
             </div>}
 
             {
-            toggleTabMenu && <div className="fixed flex flex-col bottom-0 w-full p-4 bg-[#0F0715] text-white rounded-tl-lg rounded-tr-lg gap-4" style={{ zIndex: "100" }}
+            toggleTabMenu && <motion.div 
+            initial={{y: "200px"}}
+            animate={{y: "0px"}}
+            exit={{y: "200px"}}
+            transition={{ type: "smooth", stiffness: 100, duration: 0.75 }}
+            className="fixed flex flex-col bottom-0 w-full p-4 bg-[#0F0715] text-white rounded-tl-lg rounded-tr-lg gap-4" style={{ zIndex: "100" }}
             >
                 <div className="flex justify-evenly items-center">
                     <div className="flex flex-col justify-center items-center">
@@ -53,7 +59,7 @@ export default function NavbarForSmallDevices () {
                 <div className="flex justify-end items-center w-full">
                     <RxCross2 className="w-6 h-6 cursor-pointer" onClick={() => setToggleTabMenu(false)}/>
                 </div>
-            </div>
+            </motion.div>
             }
         </div>
     )

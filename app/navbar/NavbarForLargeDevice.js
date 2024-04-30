@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import Link from "next/link";
 
 const ButtonBackground = {
@@ -7,7 +8,12 @@ const ButtonBackground = {
 
 export default function Navbar (){
     return (
-        <nav className="flex justify-between items-center px-20 h-20 bg-[#0F0715] text-white text-lg fixed w-full z-50">
+        <motion.nav 
+        initial={{y: "-200px"}}
+        animate={{y: "0px"}}
+        exit={{y: "-200px"}}
+        transition={{ type: "smooth", stiffness: 100, duration: 0.75 }}
+        className="flex justify-between items-center px-20 h-20 bg-[#0F0715] text-white text-lg fixed w-full z-50">
             <div>
                 <p>abdullah.dev.it@gmail.com</p>
             </div>
@@ -31,6 +37,6 @@ export default function Navbar (){
                     <a href="#contact" style={ButtonBackground} className="px-6 py-1.5 rounded-3xl hover:bg-white hover:brightness-110">Hire Me!</a>
                 </li>
             </ul>
-        </nav>
+        </motion.nav>
     );
 }

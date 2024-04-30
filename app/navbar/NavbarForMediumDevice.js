@@ -1,5 +1,6 @@
 "use client"
 
+import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { useState } from "react";
 import { FaFacebookSquare, FaGithubSquare, FaLinkedin, FaWhatsappSquare } from "react-icons/fa";
@@ -12,7 +13,9 @@ const ButtonBackground = {
 
 export default function MediumDeviceNavbar() {
     const [toggleTabMenu, setToggleTabMenu] = useState(false);
-    return (<div className="flex justify-end items-center pr-1 h-20 bg-[#0F0715] text-white text-lg">
+    return (<div
+        
+    className="flex justify-end items-center pr-1 h-20 bg-[#0F0715] text-white text-lg">
             <div className="">
                     <button className="text-white p-5 focus:outline-none" style={ButtonBackground} onClick={() => setToggleTabMenu(true)}>
                         <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -21,7 +24,14 @@ export default function MediumDeviceNavbar() {
                     </button>
             </div>
             {
-                toggleTabMenu &&  <div className="fixed w-4/6 flex flex-col justify-between items-end bg-black h-screen right-0 top-0 list-none opacity-90 z-50">
+                toggleTabMenu && 
+                <AnimatePresence>
+                <motion.div
+                initial={{x: "66.67vw"}}
+                animate={{x: "0vw"}}
+                exit={{x: "66.67vw"}}
+                transition={{ type: "smooth", stiffness: 100, duration: 0.75 }}
+                className="fixed w-4/6 flex flex-col justify-between items-end bg-black h-screen right-0 top-0 list-none opacity-90 z-50">
                 <div className="w-full">
                 <div className="flex justify-between items-center w-full h-20" style={ButtonBackground}>
                     <p className="ml-10 text-3xl uppercase  font-extrabold">Md Abdullah</p>
@@ -64,7 +74,8 @@ export default function MediumDeviceNavbar() {
                 <a href="https://www.linkedin.com/in/md-abdullah-1907b8173/" className="bg-white p-2 rounded-full hover:bg-gray-200"><FaLinkedin className="w-6 h-6 text-[#0077B5]" /></a>
                 <a href="https://wa.me/01780073651" className="bg-white p-2 rounded-full hover:bg-gray-200"><FaWhatsappSquare className="w-6 h-6 text-[#25D366]"/></a> <a href="https://github.com/Md-Abdullah-321" className="bg-white p-2 rounded-full hover:bg-gray-200"><FaGithubSquare  className="w-6 h-6 text-[#333]"/></a>
             </div>
-            </div>
+            </motion.div>
+            </AnimatePresence>
             }
     </div>)
 }
