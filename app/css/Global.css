@@ -7,7 +7,7 @@ Designing the scrollbar
 }
 
 ::-webkit-scrollbar-track {
-  background: #f2f2f2;
+  background: #fff;
 }
 
 ::-webkit-scrollbar-thumb {
