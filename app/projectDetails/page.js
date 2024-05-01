@@ -65,7 +65,7 @@ function ProjectDetailsContent() {
         </div>
 
         {/* right side for details */}
-        <div className="md:w-5/12 lg:w-4/12 h-full flex flex-col md:h-[650px] md:overflow-scroll p-1 mt-5 md:mt-0">
+        <div className="md:w-5/12 lg:w-4/12 h-full flex flex-col md:h-[650px] md:overflow-scroll p-1 mt-5 md:mt-0 overflow-x-hidden">
           <div className="flex justify-between items-center">
             <a href={project?.live_url} style={ButtonBackground} className="px-8 lg:px-12 py-2 hover:brightness-125 text-white" target="_blank">Live Side</a>
             <a href={project?.github_url} style={ButtonBackground} className="px-8 lg:px-12 py-2 hover:brightness-125 text-white " target="_blank">Github URL</a>

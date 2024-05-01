@@ -14,12 +14,12 @@ const ButtonBackground = {
 
 export default function HeroSection() {
   return (
-    <div className="min-h-[600px] flex flex-col-reverse md:flex-row justify-around items-center gap-x-10 p-6 lg:p-0 font-sans" style={ButtonBackground} id='home'>
+    <div className=" min-h-[95vh] sm:min-h-[700px] flex flex-col-reverse md:flex-row justify-around items-center gap-x-10 p-6 lg:p-0 font-sans" style={ButtonBackground} id='home'>
       {/* text, button and links  */}
       <div className=' w-full md:w-1/2 flex flex-col gap-y-2 md:gap-y-4 mt-10 md:mt-0 p-2'>
         <motion.h5 
-        initial={{y: "100vh"}}
-        animate={{ y: "0vh" }}
+        initial={{x: "-500px", opacity: "0"}}
+        animate={{ x: "0px", opacity: "1"}}
         transition={{
                type: "spring",
                stiffness: 30,
@@ -27,8 +27,8 @@ export default function HeroSection() {
        }}
         className='text-white text-xl sm:text-2xl font-semibold'>I am Md Abdullah</motion.h5>
         <motion.h2 
-         initial={{y: "100vh"}}
-         animate={{ y: "0vh" }}
+          initial={{x: "-500px", opacity: "0"}}
+          animate={{ x: "0px", opacity: "1"}}
          transition={{
                 type: "spring",
                 stiffness: 30,
@@ -36,8 +36,8 @@ export default function HeroSection() {
         }}
         className='bg-gradient-to-r from-violet-600 to-violet-300 ... inline-block ... text-transparent ... bg-clip-text text-3xl sm:text-4xl md:text-5xl font-extrabold'>Full Stack Web Developer</motion.h2>
         <motion.p 
-         initial={{y: "100vh"}}
-         animate={{ y: "0vh" }}
+       initial={{x: "-500px", opacity: "0"}}
+       animate={{ x: "0px", opacity: "1"}}
          transition={{
                 type: "spring",
                 stiffness: 30,

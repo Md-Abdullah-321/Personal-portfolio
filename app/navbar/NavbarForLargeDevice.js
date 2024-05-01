@@ -13,7 +13,7 @@ export default function Navbar (){
         animate={{y: "0px"}}
         exit={{y: "-500px"}}
         transition={{ type: "smooth", stiffness: 100, duration: 0.75 }}
-        className="flex justify-between items-center px-20 h-20 bg-[#0F0715] text-white text-lg fixed w-full z-50">
+        className="lg:flex justify-between items-center px-20 h-20 bg-[#0F0715] text-white text-lg fixed w-full z-50 hidden">
             <div>
                 <p>abdullah.dev.it@gmail.com</p>
             </div>
