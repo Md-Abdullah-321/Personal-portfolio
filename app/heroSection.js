@@ -46,7 +46,8 @@ export default function HeroSection() {
         className='text-gray-300'>Web expert with {new Date().getFullYear() - 2022} years' experience, adept at problem-solving and innovation. Passionate about pushing boundaries and actively engaged in the developer community.</motion.p>
 
         <div className='flex flex-col sm:flex-row items-center gap-x-2 md:gap-x-3 mt-10 transition-all'>
-            <motion.button 
+            <motion.a 
+            href="https://drive.google.com/file/d/1b3HIQlO_CrCF_bo9_jCSK0S4O5dI_MDz/view?usp=sharing"
              initial={{x: "-500px"}}
              animate={{ x: "0px" }}
              transition={{
@@ -55,7 +56,7 @@ export default function HeroSection() {
                     duration: 1,
                     delay: 1.5,
             }}
-            className='text-violet-700 flex items-center gap-x-3 border border-violet-700 px-16 py-2 rounded-md hover:bg-violet-700 hover:text-white'>Download CV <MdOutlineFileDownload className='w-5 h-5'/></motion.button>
+            className='text-violet-700 flex items-center gap-x-3 border border-violet-700 px-16 py-2 rounded-md hover:bg-violet-700 hover:text-white'>Download CV <MdOutlineFileDownload className='w-5 h-5'/></motion.a>
 
             <div className='flex gap-x-8 mt-4 sm:mt-0 sm:gap-x-4'>
             <motion.a

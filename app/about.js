@@ -32,11 +32,12 @@ export default function About() {
         <h4 className='text-3xl font-extrabold'>Based in Bangladesh</h4>
         <p className='text-gray-400'>Tech aficionado skilled in HTML, CSS, JavaScript, ReactJS, Node.js, MongoDB, SQL, Flask, Python, Java, WordPress, and more. Thriving on problem-solving and crafting dynamic digital experiences, I'm constantly seeking new challenges to conquer and innovative solutions to create.</p>
         <motion.a
+            href = "https://drive.google.com/file/d/1b3HIQlO_CrCF_bo9_jCSK0S4O5dI_MDz/view?usp=sharing"
             initial={{x: "50vw"}}
             animate={{x: "0vw"}}
             exit={{x: "50vw"}}
             transition={{ type: "smooth", stiffness: 100, duration: 1.2, delay: 1 }}
-        href="#" className='flex items-center gap-x-4 bg-black text-white w-60 py-2.5 px-2 justify-center rounded-md mt-5 group transition-all font-medium'>Download My Resume <GoArrowRight  className='w-5 h-5 -rotate-45 group-hover:rotate-0'/></motion.a>
+       className='flex items-center gap-x-4 bg-black text-white w-60 py-2.5 px-2 justify-center rounded-md mt-5 group transition-all font-medium'>Download My Resume <GoArrowRight  className='w-5 h-5 -rotate-45 group-hover:rotate-0'/></motion.a>
       </motion.div>
     </div>
   )
