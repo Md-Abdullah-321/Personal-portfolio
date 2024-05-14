@@ -27,7 +27,7 @@ export default function Portfolio() {
 
       <div className="w-full lg:w-5/6 mx-auto mt-20 px-2 sm:px-5 lg:px-0 h-2/3 flex justify-center items-center">
       {projects.length > 0 && <ImageSlider projects={projects}/>}
-      {!(projects.length > 0) && <p className="text-5xl uppercase font-extrabold text-gray-200">Loading...</p>}
+      {!(projects.length > 0) && <p className="text-5xl uppercase font-extrabold text-gray-200">Fetching Projects...</p>}
       </div>
     </div>
   )

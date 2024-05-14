@@ -1,9 +1,9 @@
 import { BiLogoFlask, BiLogoTypescript } from "react-icons/bi";
-import { DiBootstrap } from "react-icons/di";
+import { DiBootstrap, DiDart } from "react-icons/di";
 import { FaDocker, FaJava, FaNode, FaPython, FaShopify, FaWordpressSimple } from "react-icons/fa";
 import { IoLogoJavascript } from "react-icons/io";
 import { RiReactjsFill } from "react-icons/ri";
-import { SiExpress, SiMongodb, SiMysql, SiRedux, SiTailwindcss } from "react-icons/si";
+import { SiExpress, SiFlutter, SiMongodb, SiMysql, SiRedux, SiTailwindcss } from "react-icons/si";
 import { TbBrandNextjs } from "react-icons/tb";
 import SkillCart from "./skillCart";
 
@@ -63,9 +63,19 @@ export default function Skills() {
                 <SkillCart name="Python" description="Intermediate" icon={<FaPython  className=" -rotate-45"/>}/>  
 
                 <SkillCart name="TypeScript" description="Intermediate" icon={<BiLogoTypescript  className=" -rotate-45"/>}/>
+
+                <SkillCart name="Dart" description="Intermediate" icon={<DiDart  className=" -rotate-45"/>}/>
             </div>
            </div>
 
+
+           <div className="mt-5">
+            <h4 className="uppercase font-extrabold text-gray-300">Mobile App:</h4>
+            <div className="flex  gap-4 items-center mt-6 flex-wrap">
+                <SkillCart name="Flutter" description="Basic" icon={<SiFlutter  className=" -rotate-45" />}/> 
+            </div>
+           </div>
+           
            <div className="mt-5">
             <h4 className="uppercase font-extrabold text-gray-300">CMS:</h4>
             <div className="flex  gap-4 items-center mt-6 flex-wrap">

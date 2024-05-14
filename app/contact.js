@@ -17,10 +17,10 @@ const init = {
 export default function Contact() {
     const [formData, setFormData] = useState({...init});
   return (
-    <div className="min-h-[700px] bg-[#0F0F0F] flex justify-between items-center" id="contact">
-        <div className="w-full px-5 lg:px-0 lg:w-9/12 mx-auto py-20 sm:py-10 flex flex-col-reverse lg:flex-row justify-between items-center">
+    <div className="min-h-[700px] bg-[#0F0F0F] flex justify-center items-center w-full" id="contact">
+        <div className="w-full px-5 lg:px-0 lg:w-10/12 2xl:w-9/12 mx-auto py-20 sm:py-10 flex flex-col-reverse lg:flex-row justify-between items-center gap-x-4">
                     {/* contact info & social info */}
-        <div className="w-full lg:w-1/3 mt-10 ">
+        <div className="w-full lg:w-5/12 mt-10">
             {/* contact info  */}
             <div>
                 <h3 className="text-white uppercase font-semibold">Contact info</h3>
@@ -69,19 +69,19 @@ export default function Contact() {
             <div className="mt-10 lg:mt-20">
             <h3 className="text-white uppercase font-semibold">Social info</h3>
             <div className="flex gap-x-6 items-center mt-5">
-                <a href="https://github.com/Md-Abdullah-321" className="bg-[#171717] p-4 sm:p-6 rounded-full shadow-md" target="_blank">{<VscGithub className="text-white w-8 h-8 cursor-pointer"/>}</a> 
+                <a href="https://github.com/Md-Abdullah-321" className="bg-[#171717] p-4 sm:p-6 md:p-4 rounded-full shadow-md" target="_blank">{<VscGithub className="text-white w-8 h-8 cursor-pointer"/>}</a> 
                 
-                <a href="https://www.facebook.com/profile.php?id=100086184884085" className="bg-[#171717] p-4 sm:p-6 rounded-full shadow-md" target="_blank">{<FaFacebookSquare className="text-white w-8 h-8 cursor-pointer"/>}</a>
+                <a href="https://www.facebook.com/profile.php?id=100086184884085" className="bg-[#171717] p-4 sm:p-6 md:p-4  rounded-full shadow-md" target="_blank">{<FaFacebookSquare className="text-white w-8 h-8 cursor-pointer"/>}</a>
 
-                <a href="https://www.linkedin.com/in/md-abdullah-1907b8173/"  className="bg-[#171717] p-4 sm:p-6 rounded-full shadow-md" target="_blank">{<FaLinkedin className="text-white w-8 h-8 cursor-pointer"/>}</a>
+                <a href="https://www.linkedin.com/in/md-abdullah-1907b8173/"  className="bg-[#171717] p-4 sm:p-6 md:p-4  rounded-full shadow-md" target="_blank">{<FaLinkedin className="text-white w-8 h-8 cursor-pointer"/>}</a>
 
-                <a href="https://wa.me/+8801780073651" className="bg-[#171717] p-4 sm:p-6 rounded-full shadow-md" target="_blank">{<FaWhatsappSquare className="text-white w-8 h-8 cursor-pointer"/>}</a>
+                <a href="https://wa.me/+8801780073651" className="bg-[#171717] p-4 sm:p-6 md:p-4  rounded-full shadow-md" target="_blank">{<FaWhatsappSquare className="text-white w-8 h-8 cursor-pointer"/>}</a>
             </div>
             </div>
         </div>
 
         {/* contact form  */}
-        <div className="w-full lg:w-2/3 flex justify-center items-center lg:mt-0">
+        <div className="w-full lg:w-7/12 flex justify-center items-center lg:mt-0">
             <div className="bg-[#171717] p-6 rounded-2xl w-full">
                 <h2 className="text-white text-5xl text-start font-semibold">Let's work <span className=" text-violet-500">together</span></h2>
 

@@ -10,7 +10,7 @@ import 'swiper/css/pagination';
 
 import './style.css';
 
-// import required modules
+// Import required modules
 import Link from 'next/link';
 import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 
@@ -61,7 +61,7 @@ export default function ImageSlider({projects}) {
         modules={[Autoplay, Pagination, Navigation]}
         onAutoplayTimeLeft={onAutoplayTimeLeft}
         className="min-h-80"
-      >
+      > 
       {projects.map((project, index) => (
         <SwiperSlide key={index} className='w-full transition-all cursor-pointer rounded-md min-h-80' style={shadow}>
           <Image src={project.projectImages[Math.floor(Math.random() * 5)]} alt="" srcSet="" className='w-full rounded-md object-cover object-center self-center border border-violet-200 overflow-clip' width={1920} height={1080}/>
