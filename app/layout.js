@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/next-script-for-ga */
 "use client";
 
 import { Inter } from "next/font/google";
@@ -12,14 +13,26 @@ const metadata = {
   description: "Personal Portfolio"
 }
 
-
 export default function RootLayout({ children }) {
   const pathname = usePathname();
+
+  // Google Analytics tracking code
+  const googleAnalyticsScript = `
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-WFQKYNQLCZ');
+  `;
+
   return (
     <html lang="en" style={{ scrollBehavior: 'smooth' }}>
       <head>
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} />
+
+        {/* Google Analytics tracking code */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-WFQKYNQLCZ"></script>
+        <script dangerouslySetInnerHTML={{ __html: googleAnalyticsScript }}></script>
       </head>
       <body className={inter.className}>
        {pathname !== "/projectDetails" &&  <ReturnCurrentNavbar />}
