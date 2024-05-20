@@ -51,7 +51,9 @@ export default function Login() {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
-        console.log(data);
+        if(data.success){
+          localStorage.setItem("User", "Md Abdullah");
+        }
       } catch (error) {
         console.error('Error:', error);
       }
