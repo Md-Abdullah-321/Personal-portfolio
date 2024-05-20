@@ -50,13 +50,14 @@ export default function Login() {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
-        console.log(response);
+        const data = await response.json();
+        console.log(data);
       } catch (error) {
         console.error('Error:', error);
       }
   }
 
-  console.log(formData);
+ 
   return (
     <div
       className="flex justify-center items-center w-full min-h-screen"
