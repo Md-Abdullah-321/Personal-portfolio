@@ -14,6 +14,8 @@ export default function AdminDashboard() {
         }
     }, []);
 
+    
+
     useEffect(() => {
       const updateScreenWidth = () => setScreenWidth(window.innerWidth);
       updateScreenWidth();
@@ -23,7 +25,9 @@ export default function AdminDashboard() {
     return (
       <div className="w-full min-h-screen flex justify-between">
         {screenWidth > 1024 && <Sidebar/>}
-        <div className="h-screen w-10/12"></div>
+        <div className="h-screen w-10/12">
+
+        </div>
       </div>
     )
   }
