@@ -1,4 +1,4 @@
-"use client"; // Add this directive at the top
+"use client"; // Ensure this is the first line
 
 import './globals.css';
 import { Inter } from 'next/font/google';
