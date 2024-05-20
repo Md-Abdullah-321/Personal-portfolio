@@ -15,12 +15,14 @@ export default function RootLayout({ children }) {
 
   useEffect(() => {
     const handleRouteChange = (url) => {
-      window.gtag('config', 'G-EYTDVT5GPF', {
-        page_path: url,
-      });
+      if (typeof window !== 'undefined' && window.gtag) {
+        window.gtag('config', 'G-EYTDVT5GPF', {
+          page_path: url,
+        });
+      }
     };
 
-    if (!window.GA_INITIALIZED) {
+    if (typeof window !== 'undefined' && !window.GA_INITIALIZED) {
       window.GA_INITIALIZED = true;
       // Initialize GA4
       const script = document.createElement('script');
@@ -40,14 +42,16 @@ export default function RootLayout({ children }) {
       document.head.appendChild(script2);
     }
 
-    handleRouteChange(window.location.pathname);
+    if (typeof window !== 'undefined') {
+      handleRouteChange(window.location.pathname);
+    }
 
     return () => {
       // Clean up if needed (e.g., removing event listeners)
     };
   }, [pathname]);
 
-  if(!window.location.pathname.startsWith("/admin")){
+  if (typeof window !== 'undefined' && !window.location.pathname.startsWith("/admin")) {
     return (
       <html lang="en" style={{ scrollBehavior: 'smooth' }}>
         <Head>
@@ -61,7 +65,7 @@ export default function RootLayout({ children }) {
         </body>
       </html>
     );
-  }else {
+  } else {
     return (
       <html lang="en" style={{ scrollBehavior: 'smooth' }}>
         <Head>
@@ -74,5 +78,4 @@ export default function RootLayout({ children }) {
       </html>
     );
   }
-  
 }
