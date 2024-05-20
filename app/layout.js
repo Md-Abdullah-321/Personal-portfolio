@@ -29,10 +29,6 @@ export default function RootLayout({ children }) {
       <head>
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} />
-
-        {/* Google Analytics tracking code */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-WFQKYNQLCZ"></script>
-        <script dangerouslySetInnerHTML={{ __html: googleAnalyticsScript }}></script>
       </head>
       <body className={inter.className}>
        {pathname !== "/projectDetails" &&  <ReturnCurrentNavbar />}
