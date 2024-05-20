@@ -23,7 +23,12 @@ export default function Login() {
   }, []);
 
   const handleChange = (e) => {
-    setFormData({[e.target.name] : e.target.value})
+    setFormData((prev) => {
+      return {
+        ...prev,
+        [e.target.name] : e.target.value
+      }
+    })
   }
 
   const handleSubmit = async (e) => {
@@ -51,6 +56,7 @@ export default function Login() {
       }
   }
 
+  console.log(formData);
   return (
     <div
       className="flex justify-center items-center w-full min-h-screen"
