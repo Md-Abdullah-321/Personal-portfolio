@@ -47,17 +47,32 @@ export default function RootLayout({ children }) {
     };
   }, [pathname]);
 
-  return (
-    <html lang="en" style={{ scrollBehavior: 'smooth' }}>
-      <Head>
-        <title>Md Abdullah</title>
-        <meta name="description" content="Personal Portfolio" />
-      </Head>
-      <body className={inter.className}>
-        <ReturnCurrentNavbar />
-        {children}
-        {pathname !== "/projectDetails" && <ReturnFooter />}
-      </body>
-    </html>
-  );
+  if(!window.location.pathname.startsWith("/admin")){
+    return (
+      <html lang="en" style={{ scrollBehavior: 'smooth' }}>
+        <Head>
+          <title>Md Abdullah</title>
+          <meta name="description" content="Personal Portfolio" />
+        </Head>
+        <body className={inter.className}>
+          <ReturnCurrentNavbar />
+          {children}
+          {pathname !== "/projectDetails" && <ReturnFooter />}
+        </body>
+      </html>
+    );
+  }else {
+    return (
+      <html lang="en" style={{ scrollBehavior: 'smooth' }}>
+        <Head>
+          <title>Md Abdullah</title>
+          <meta name="description" content="Personal Portfolio" />
+        </Head>
+        <body className={inter.className}>
+          {children}
+        </body>
+      </html>
+    );
+  }
+  
 }
