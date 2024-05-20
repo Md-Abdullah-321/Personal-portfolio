@@ -18,6 +18,9 @@ export default function Login() {
   const [backgroundImage, setBackgroundImage] = useState('');
 
   useEffect(() => {
+    if(localStorage.getItem("User")){
+      return router.push('/admin', { scroll: false });
+    }
     const imageUrl = '/login.svg'; // Remove '/public' from the path
     setBackgroundImage(`url(${imageUrl})`);
   }, []);
@@ -53,6 +56,7 @@ export default function Login() {
         const data = await response.json();
         if(data.success){
           localStorage.setItem("User", "Md Abdullah");
+          return router.push('/admin', { scroll: false });
         }
       } catch (error) {
         console.error('Error:', error);

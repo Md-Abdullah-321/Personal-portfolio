@@ -7,7 +7,7 @@ export default function AdminDashboard() {
     const router = useRouter();
     useEffect(() => {
         //Temprary Solution:
-        if(!localStorage.getItem("isLoggedIn")){
+        if(!localStorage.getItem("User")){
             return router.push('/admin/login', { scroll: false });
         }
     }, [])
