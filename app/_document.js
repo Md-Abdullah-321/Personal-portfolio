@@ -44,7 +44,6 @@ export default function RootLayout({ children }) {
     handleRouteChange(window.location.pathname);
 
     return () => {
-      // Clean up if needed (e.g., removing event listeners)
     };
   }, [pathname]);
 
