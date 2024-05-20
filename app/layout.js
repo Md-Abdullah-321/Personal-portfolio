@@ -1,9 +1,12 @@
-"use client"; // Ensure this is the first line
+"use client";
 
 import './globals.css';
 import { Inter } from 'next/font/google';
 import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
+import Head from 'next/head';
+import ReturnFooter from "./footer";
+import { ReturnCurrentNavbar } from "./navbar/ReturnCurrentNavbar";
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -51,12 +54,14 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en" style={{ scrollBehavior: 'smooth' }}>
-      <head>
+      <Head>
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} />
-      </head>
+      </Head>
       <body className={inter.className}>
+        <ReturnCurrentNavbar />
         {children}
+        {pathname !== "/projectDetails" && <ReturnFooter />}
       </body>
     </html>
   );
