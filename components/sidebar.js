@@ -7,7 +7,7 @@ import { MdContentPasteSearch, MdDashboardCustomize } from "react-icons/md";
 
 function Sidebar() {
     return ( 
-    <div className="w-3/12 h-screen bg-violet-600 flex flex-col">
+    <div className="w-3/12 lg:w-2/12 h-screen bg-violet-600 flex flex-col">
         {/* header  */}
         <div className="h-40 w-full bg-white border-2 border-violet-600 shadow-md flex items-center justify-around rounded-lg">
         <div className='w-[110px] h-[110px] rounded-full border-2 border-violet-600 flex justify-center items-center'>
