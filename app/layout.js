@@ -1,21 +1,62 @@
 "use client";
 
-import { Inter } from "next/font/google";
+import './globals.css';
+import { Inter } from 'next/font/google';
+import { useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import Head from 'next/head';
-import { usePathname } from "next/navigation";
 import ReturnFooter from "./footer";
-import "./globals.css";
 import { ReturnCurrentNavbar } from "./navbar/ReturnCurrentNavbar";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'] });
+
+export const metadata = {
+  title: 'Md Abdullah',
+  description: 'Personal Portfolio',
+};
 
 export default function RootLayout({ children }) {
   const pathname = usePathname();
+
+  useEffect(() => {
+    const handleRouteChange = (url) => {
+      window.gtag('config', 'G-EYTDVT5GPF', {
+        page_path: url,
+      });
+    };
+
+    if (!window.GA_INITIALIZED) {
+      window.GA_INITIALIZED = true;
+      // Initialize GA4
+      const script = document.createElement('script');
+      script.src = `https://www.googletagmanager.com/gtag/js?id=G-EYTDVT5GPF`;
+      script.async = true;
+      document.head.appendChild(script);
+
+      const script2 = document.createElement('script');
+      script2.innerHTML = `
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-EYTDVT5GPF', {
+          page_path: window.location.pathname,
+        });
+      `;
+      document.head.appendChild(script2);
+    }
+
+    handleRouteChange(window.location.pathname);
+
+    return () => {
+      // Clean up if needed (e.g., removing event listeners)
+    };
+  }, [pathname]);
+
   return (
     <html lang="en" style={{ scrollBehavior: 'smooth' }}>
       <Head>
-        <title>Md Abdullah</title>
-        <meta name="description" content="Personal Portfolio" />
+        <title>{metadata.title}</title>
+        <meta name="description" content={metadata.description} />
       </Head>
       <body className={inter.className}>
         <ReturnCurrentNavbar />
