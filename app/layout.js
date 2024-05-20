@@ -1,4 +1,5 @@
-// app/layout.js
+"use client"; // Add this directive at the top
+
 import './globals.css';
 import { Inter } from 'next/font/google';
 import { useEffect } from 'react';
