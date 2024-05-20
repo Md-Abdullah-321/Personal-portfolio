@@ -1,6 +1,7 @@
 "use client"
 
 import Image from 'next/image';
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const ButtonBackground = {
@@ -16,12 +17,13 @@ const init = {
 export default function Login() {
   const [formData, setFormData] = useState({...init});
   const [backgroundImage, setBackgroundImage] = useState('');
+  const router = useRouter();
 
   useEffect(() => {
     if(localStorage.getItem("User")){
       return router.push('/admin', { scroll: false });
     }
-    const imageUrl = '/login.svg'; // Remove '/public' from the path
+    const imageUrl = '/login.svg'; 
     setBackgroundImage(`url(${imageUrl})`);
   }, []);
 
