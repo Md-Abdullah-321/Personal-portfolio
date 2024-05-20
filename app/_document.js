@@ -25,7 +25,7 @@ export default function RootLayout({ children }) {
       window.GA_INITIALIZED = true;
       // Initialize GA4
       const script = document.createElement('script');
-      script.src = `https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX`;
+      script.src = `https://www.googletagmanager.com/gtag/js?id=G-EYTDVT5GPF`;
       script.async = true;
       document.head.appendChild(script);
 
