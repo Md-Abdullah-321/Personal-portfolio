@@ -2,10 +2,9 @@
 
 import Sidebar from "@/components/sidebar";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 export default function AdminDashboard() {
-    const [screenWidth, setScreenWidth] = useState(0);
     const router = useRouter();
     useEffect(() => {
         //Temprary Solution:
@@ -15,16 +14,9 @@ export default function AdminDashboard() {
     }, []);
 
     
-
-    useEffect(() => {
-      const updateScreenWidth = () => setScreenWidth(window.innerWidth);
-      updateScreenWidth();
-      window.addEventListener('resize', updateScreenWidth);
-      return () => window.removeEventListener('resize', updateScreenWidth);
-    }, []);
     return (
       <div className="w-full min-h-screen flex justify-between">
-        {screenWidth > 1024 && <Sidebar/>}
+         <Sidebar/>
         <div className="h-screen w-10/12">
 
         </div>
