@@ -51,7 +51,7 @@ export default function RootLayout({ children }) {
     };
   }, [pathname]);
 
-  if (typeof window !== 'undefined' && !window.location.pathname.startsWith("/admin")) {
+  if (typeof window !== 'undefined' && !window.location.pathname.startsWith("/admin") || typeof window !== 'undefined' && !window.location.pathname.startsWith("/projectDetails")) {
     return (
       <html lang="en" style={{ scrollBehavior: 'smooth' }}>
         <Head>
