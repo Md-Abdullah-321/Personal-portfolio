@@ -51,31 +51,23 @@ export default function RootLayout({ children }) {
     };
   }, [pathname]);
 
-  if (typeof window !== 'undefined' && !window.location.pathname.startsWith("/admin") || typeof window !== 'undefined' && !window.location.pathname.startsWith("/projectDetails")) {
-    return (
-      <html lang="en" style={{ scrollBehavior: 'smooth' }}>
-        <Head>
-          <title>Md Abdullah</title>
-          <meta name="description" content="Personal Portfolio" />
-        </Head>
-        <body className={inter.className}>
-          <ReturnCurrentNavbar />
-          {children}
-          {pathname !== "/projectDetails" && <ReturnFooter />}
-        </body>
-      </html>
-    );
-  } else {
-    return (
-      <html lang="en" style={{ scrollBehavior: 'smooth' }}>
-        <Head>
-          <title>Md Abdullah</title>
-          <meta name="description" content="Personal Portfolio" />
-        </Head>
-        <body className={inter.className}>
-          {children}
-        </body>
-      </html>
-    );
-  }
+  const isBrowser = typeof window !== 'undefined';
+  const pathnameFromWindow = isBrowser ? window.location.pathname : '';
+
+  const isAdminPath = pathnameFromWindow.startsWith("/admin");
+  const isProjectDetailsPath = pathnameFromWindow.startsWith("/projectDetails");
+
+  return (
+    <html lang="en" style={{ scrollBehavior: 'smooth' }}>
+      <Head>
+        <title>Md Abdullah</title>
+        <meta name="description" content="Personal Portfolio" />
+      </Head>
+      <body className={inter.className}>
+        {!isAdminPath && !isProjectDetailsPath && <ReturnCurrentNavbar />}
+        {children}
+        {!isProjectDetailsPath && <ReturnFooter />}
+      </body>
+    </html>
+  );
 }
