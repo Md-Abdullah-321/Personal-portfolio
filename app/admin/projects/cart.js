@@ -1,8 +1,9 @@
+import Image from "next/image";
 
 const Cart = (project) => {
     return <div className="h-80 w-60 shadow-md rounded-md">
         <div className="h-48 w-full ">
-
+        <Image src={project?.projectImages[0]} alt="" srcSet="" className='w-full h-full object-cover object-center self-center' width={1920} height={1080}/>
         </div>
         <div className="flex flex-col justify-center h-32 p-2">
             <h5 className="text-sm">Title: </h5>

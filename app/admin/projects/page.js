@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import Cart from "./cart";
 
 function Projects() {
-  const [projects, setProjects] = useState([]);
+  const [projects, setProjects] = useState([1,2,3]);
   useEffect(() => {
       //Temprary Solution:
       if(!localStorage.getItem("User")){
@@ -35,7 +35,7 @@ function Projects() {
           </div>
 
 
-          <div className="p-20">
+          <div className="p-20 flex gap-10 flex-wrap">
              {projects?.map((item, index) => <Cart key={index} project={item}/>)}
           </div>
         </div>
