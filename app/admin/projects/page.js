@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import Cart from "./cart";
 
 function Projects() {
-  const [projects, setProjects] = useState([1,2,3]);
+  const [projects, setProjects] = useState([]);
   useEffect(() => {
       //Temprary Solution:
       if(!localStorage.getItem("User")){
