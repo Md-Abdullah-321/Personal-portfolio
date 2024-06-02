@@ -1,12 +1,10 @@
 "use client"
 
 import Sidebar from "@/components/sidebar";
-import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 function Projects() {
-  const [screenWidth, setScreenWidth] = useState(0);
-  const router = useRouter();
+  const [projects, setProjects] = useState([]);
   useEffect(() => {
       //Temprary Solution:
       if(!localStorage.getItem("User")){
@@ -14,16 +12,27 @@ function Projects() {
       }
   }, []);
 
-  useEffect(() => {
-    const updateScreenWidth = () => setScreenWidth(window.innerWidth);
-    updateScreenWidth();
-    window.addEventListener('resize', updateScreenWidth);
-    return () => window.removeEventListener('resize', updateScreenWidth);
-  }, []);
+    useEffect(() => {
+        const fetchProject = async () => {
+            const res = await fetch("https://portfolio-server-c0fa.onrender.com/api/project");
+            const data = await res.json();
+            setProjects([...data.payload]);
+        }
+
+        fetchProject();
+    }, [])
+
+  
+    console.log(projects);
     return (
       <div className="w-full min-h-screen flex justify-between">
-         {screenWidth > 1024 && <Sidebar/>}
-        <div className="w-10/12 h-screen">Projects</div>
+         <Sidebar/>
+        <div className="h-screen w-10/12 my-10">
+            <div className="flex flex-col justify-center items-center w-full">
+                <h2 className=" uppercase text-5xl sm:text-6xl md:text-8xl font-extrabold text-gray-200">Portfolio</h2>
+                <h3 className="absolute text-3xl sm:text-4xl md:text-5xl uppercase font-extrabold md:mt-1.5 bg-gradient-to-r from-violet-600 to-violet-300 ... inline-block ... text-transparent ... bg-clip-text">my recent work</h3>
+          </div>
+        </div>
       </div>
     )
 }

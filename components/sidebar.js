@@ -49,14 +49,12 @@ function Sidebar() {
 
           .sidebar_position {
             left: -400px;
-            opacity: 0; /* Corrected comma to semicolon */
-            transition: ease-out 0.8s; /* Moved transition property here */
+            transition:  0.8s;
           }
           
           .show_sidebar {
             left: 0;
-            opacity: 1;
-            transition: ease-out 0.8s; /* Added transition property */
+            transition: ease-out 0.8s; 
           }
           
         `;
@@ -69,11 +67,11 @@ function Sidebar() {
       console.log(sidebar);
     return <>
     {screenWidth < 1024 && !sidebar && <div className=' bg-violet-600 h-10 flex justify-center items-center w-32 sm:w-14 m-2 rounded-sm cursor-pointer' onClick={() => setSidebar(true)}><FaBars className='w-6 h-6 sm:w-8 sm:h-8 text-white'/></div>}
-    <div className={screenWidth < 1024 ? sidebar ? "show_sidebar w-[300px] h-screen bg-violet-600 flex flex-col relative rounded-tr-lg rounded-br-lg": "sidebar_position w-[300px] h-screen bg-violet-600 flex flex-col relative rounded-tr-lg rounded-br-lg": "w-[300px] h-screen bg-violet-600 flex flex-col rounded-tr-lg rounded-br-lg"}>
+    <div className={screenWidth < 1024 ? sidebar ? "show_sidebar w-[300px] h-screen bg-violet-600 flex flex-col absolute rounded-tr-lg rounded-br-lg": "sidebar_position w-[300px] h-screen bg-violet-600 flex flex-col absolute rounded-tr-lg rounded-br-lg": "w-[300px] h-screen bg-violet-600 flex flex-col rounded-tr-lg rounded-br-lg"}>
         {/* header  */}
         <div className="h-40 md:h-60 w-full bg-white border-2 border-violet-600 shadow-md flex items-center justify-around rounded-lg">
         <div className='w-[90px] h-[90px] rounded-full border-2 border-violet-600 flex justify-center items-center'>
-        <IoClose className='absolute top-0 right-0 w-8 h-8 m-2 bg-gray-200 rounded-sm cursor-pointer' onClick={() => setSidebar(false)}/>
+        {screenWidth < 1024 && <IoClose className='absolute top-0 right-0 w-8 h-8 m-2 bg-gray-200 rounded-sm cursor-pointer' onClick={() => setSidebar(false)}/>}
         <Image
               className='w-[85px] h-[85px] rounded-full object-cover'
                src={"/Dashboard.JPG"}
