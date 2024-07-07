@@ -25,7 +25,7 @@ export default function HeroSection() {
                stiffness: 30,
                duration: 1,
        }}
-        className='text-white text-xl sm:text-2xl font-semibold'>I am Md Abdullah (<span className="text-sm font-light">MERN Stack Developer || Flutter Developer || Bug Fixer 🐞</span>)</motion.h5>
+        className='text-white text-xl sm:text-2xl font-semibold'>I am Md Abdullah <span className="text-xs font-medium">( MERN Stack Developer || Flutter Developer || Bug Fixer 🐞)</span></motion.h5>
         <motion.h2 
           initial={{x: "-500px", opacity: "0"}}
           animate={{ x: "0px", opacity: "1"}}
