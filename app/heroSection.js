@@ -14,7 +14,7 @@ const ButtonBackground = {
 
 export default function HeroSection() {
   return (
-    <div className=" min-h-[95vh] sm:min-h-[600px] flex flex-col-reverse md:flex-row justify-around items-center gap-x-10 p-6 lg:p-0 font-sans" style={ButtonBackground} id='home'>
+    <div className=" min-h-[95vh] sm:min-h-[650px] flex flex-col-reverse md:flex-row justify-around items-center gap-x-10 p-6 lg:p-0 font-sans" style={ButtonBackground} id='home'>
       {/* text, button and links  */}
       <div className=' w-full md:w-1/2 flex flex-col gap-y-2 md:gap-y-4 mt-10 md:mt-0 p-2'>
         <motion.h5 
@@ -56,7 +56,7 @@ export default function HeroSection() {
                     duration: 1,
                     delay: 1.5,
             }}
-            className='text-violet-700 flex items-center gap-x-3 border border-violet-700 px-16 py-2 rounded-md hover:bg-violet-700 hover:text-white'>Download CV <MdOutlineFileDownload className='w-5 h-5'/></motion.a>
+            className='flex items-center gap-x-3 border border-violet-500 px-16 md:px-8 lg:px-16 py-2.5 rounded-md bg-gradient-to-r from-violet-950 to-violet-500 text-white  transition-all hover:bg-gradient-to-l'>Download CV <MdOutlineFileDownload className='w-5 h-5'/></motion.a>
 
             <div className='flex gap-x-8 mt-4 sm:mt-0 sm:gap-x-4'>
             <motion.a
@@ -68,7 +68,7 @@ export default function HeroSection() {
                     duration: 1,
                     delay: 0.5,
             }}
-            href="https://www.facebook.com/profile.php?id=100086184884085" className="text-violet-700  hover:bg-violet-700 hover:text-white roun] rounded-full border border-violet-700 p-1" target="_blank"><FaFacebookF   className='w-8 h-8 p-0.5'/></motion.a>
+            href="https://www.facebook.com/profile.php?id=100086184884085" className="hover:text-white roun] rounded-full bg-violet-700 text-white  transition-all hover:bg-violet-800 p-2 px-2" target="_blank"><FaFacebookF   className='w-8 h-8 p-0.5'/></motion.a>
             <motion.a 
             initial={{y: "-1000px"}}
             animate={{ y: "0px" }}
@@ -78,7 +78,7 @@ export default function HeroSection() {
                    duration: 1,
                    delay: 0.5,
            }}
-            href="https://www.linkedin.com/in/md-abdullah-1907b8173/" className="text-violet-700  hover:bg-violet-700 hover:text-white rounded-full border border-violet-700 p-1" target="_blank"><FaLinkedinIn  className='w-8 h-8 p-0.5'/></motion.a>
+            href="https://www.linkedin.com/in/md-abdullah-1907b8173/" className="hover:text-white roun] rounded-full bg-violet-700 text-white  transition-all hover:bg-violet-800 p-2 px-2"target="_blank"><FaLinkedinIn  className='w-8 h-8 p-0.5'/></motion.a>
             <motion.a
             initial={{y: "-1000px"}}
             animate={{ y: "0px" }}
@@ -88,7 +88,7 @@ export default function HeroSection() {
                    duration: 1,
                    delay: 0.5,
            }}
-            href="https://wa.me/01780073651" className="text-violet-700  hover:bg-violet-700 hover:text-white rounded-full border border-violet-700 p-1" target="_blank"><FaWhatsapp className='w-8 h-8 p-0.5'/></motion.a> 
+            href="https://wa.me/01780073651" className="hover:text-white roun] rounded-full bg-violet-700 text-white  transition-all hover:bg-violet-800 p-2 px-2" target="_blank"><FaWhatsapp className='w-8 h-8 p-0.5'/></motion.a> 
             
             <motion.a 
             initial={{y: "-1000px"}}
@@ -99,7 +99,7 @@ export default function HeroSection() {
                    duration: 1,
                    delay: 0.5,
            }}
-            href="https://github.com/Md-Abdullah-321" className="text-violet-700  hover:bg-violet-700 hover:text-white rounded-full border border-violet-700 p-1" target="_blank"><FaGithub  className='w-8 h-8 p-0.5'/></motion.a>
+            href="https://github.com/Md-Abdullah-321" className="hover:text-white roun] rounded-full bg-violet-700 text-white  transition-all hover:bg-violet-800 p-2 px-2" target="_blank"><FaGithub  className='w-8 h-8 p-0.5'/></motion.a>
             </div>
         </div>
       </div>
@@ -115,11 +115,11 @@ export default function HeroSection() {
       }}
       >
         <Image
-            src="/DSC_0167.png"
+            src="https://firebasestorage.googleapis.com/v0/b/personal-portfolio-1b57c.appspot.com/o/user%2FMd%20Abdullah.jpg?alt=media&token=ed37ab31-93a6-471a-9c59-7bbe927236f2"
             alt="Md Abdullah"
-            width={400}
-            height={400}
-            className='w-[300px] h-[300px] md:w-[400px] md:h-[400px] rounded-3xl md:rotate-6 border-2 border-violet-700 shadow-md hover:rotate-3 transition-all'
+            width={1000}
+            height={1000}
+            className='w-[300px] h-[300px] md:w-[400px] md:h-[400px] rounded-full  border-2 border-violet-700 shadow-md hover:rotate-3 transition-all object-cover hover:scale-105'
         />
       </motion.div>
     </div>
