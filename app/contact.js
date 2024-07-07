@@ -39,9 +39,8 @@ export default function Contact() {
         };
         const response = await fetch('https://portfolio-server-c0fa.onrender.com/api/message', requestOptions);
         const data = await response.json();
-        alert(data.messege);
+        alert(data.messsge);
     }
-
 
   return (
     <div className="min-h-[700px] bg-[#0F0F0F] flex justify-center items-center w-full" id="contact">
