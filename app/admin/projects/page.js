@@ -34,7 +34,7 @@ function Projects() {
           </div>
 
 
-          <div className="md:p-20 flex gap-10 flex-wrap w-full justify-center items-center mt-10">
+          <div className="lg:p-10 flex gap-10 flex-wrap w-full justify-center items-center mt-10">
              {projects?.map((item, index) => <Cart key={index} project={item}/>)}
           </div>
         </div>
