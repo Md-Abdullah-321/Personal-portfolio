@@ -16,6 +16,33 @@ const init = {
 
 export default function Contact() {
     const [formData, setFormData] = useState({...init});
+
+    const handleChange = (e) => {
+        setFormData((prev) => {
+            return {
+                ...prev,
+                [e.target.name]: e.target.value
+            }
+        })
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        if(!formData.name || !formData.email || !formData.subject || !formData.message){
+            return alert("Please Fill all the required field");
+        }
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(formData)
+        };
+        const response = await fetch('https://portfolio-server-c0fa.onrender.com/api/message', requestOptions);
+        const data = await response.json();
+        alert(data.messege);
+    }
+
+
   return (
     <div className="min-h-[700px] bg-[#0F0F0F] flex justify-center items-center w-full" id="contact">
         <div className="w-full px-5 lg:px-0 lg:w-10/12 2xl:w-9/12 mx-auto py-20 sm:py-10 flex flex-col-reverse lg:flex-row justify-between items-center gap-x-4">
@@ -85,11 +112,20 @@ export default function Contact() {
             <div className="bg-[#171717] p-6 rounded-2xl w-full">
                 <h2 className="text-white text-5xl text-start font-semibold">Let's work <span className=" text-violet-500">together</span></h2>
 
-                <form method="post" className="flex flex-col justify-center items-center w-full gap-y-6 mt-5">
-                    <input type="text" name="text" placeholder="Name *" className="w-full p-3 rounded-md bg-[#222222] outline-none text-white"/>
-                    <input type="email" name="email" placeholder="Email *" className="w-full p-3 rounded-md bg-[#222222] outline-none text-white" />
-                    <input type="text" name="subject" placeholder="Your Subject *" className="w-full p-3 rounded-md bg-[#222222] outline-none text-white"/>
-                    <textarea name="message" placeholder="Your Message *" className="w-full p-3 rounded-md bg-[#222222] outline-none text-white h-36"/>
+                <form method="post" onSubmit = {(e) => handleSubmit(e)} className="flex flex-col justify-center items-center w-full gap-y-6 mt-5">
+                    <input 
+                    type="text" 
+                    name="name" 
+                    value = {formData.name} 
+                    onChange = {(e) => handleChange(e)}
+                    placeholder="Name *"  
+                    className="w-full p-3 rounded-md bg-[#222222] outline-none text-white"/>
+                    <input type="email" name="email"   value = {formData.email} 
+                    onChange = {(e) => handleChange(e)} placeholder="Email *" className="w-full p-3 rounded-md bg-[#222222] outline-none text-white" />
+                    <input type="text" name="subject"   value = {formData.subject} 
+                    onChange = {(e) => handleChange(e)} placeholder="Your Subject *" className="w-full p-3 rounded-md bg-[#222222] outline-none text-white"/>
+                    <textarea name="message"   value = {formData.message} 
+                    onChange = {(e) => handleChange(e)} placeholder="Your Message *" className="w-full p-3 rounded-md bg-[#222222] outline-none text-white h-36"/>
                     <button className="w-full p-3 rounded-md bg-[#323232] text-white hover:bg-[#222222]">Send Message</button>
                 </form>
             </div>

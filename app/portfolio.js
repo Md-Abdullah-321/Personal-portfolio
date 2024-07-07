@@ -16,8 +16,6 @@ export default function Portfolio() {
         fetchProject();
     }, [])
 
-
-    console.log(projects);
   return (
     <div className="w-full h-[500px] sm:min-h-[700px]  py-20 flex flex-col justify-center items-center" id="portfolio">
      <div className="flex flex-col justify-center items-center w-full">
