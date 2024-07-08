@@ -66,7 +66,7 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         {!isAdminPath && !isProjectDetailsPath && <ReturnCurrentNavbar />}
         {children}
-        {!isProjectDetailsPath && <ReturnFooter />}
+        {!isAdminPath && !isProjectDetailsPath && <ReturnFooter />}
       </body>
     </html>
   );

@@ -63,8 +63,6 @@ function Sidebar() {
           document.head.removeChild(style);
         };
       }, []);
-
-      console.log(sidebar);
     return <>
     {screenWidth < 1024 && !sidebar && <div className=' bg-violet-600 h-10 flex justify-center items-center w-12 sm:w-14 m-2 rounded-sm cursor-pointer absolute' onClick={() => setSidebar(true)}><FaBars className='w-6 h-6 sm:w-8 sm:h-8 text-white'/></div>}
     <div className={screenWidth < 1024 ? sidebar ? "show_sidebar w-[300px] h-screen bg-violet-600 flex flex-col absolute rounded-tr-lg rounded-br-lg z-50": "sidebar_position w-[300px] h-screen bg-violet-600 flex flex-col absolute rounded-tr-lg rounded-br-lg z-50": "w-[300px] h-screen bg-violet-600 flex flex-col rounded-tr-lg rounded-br-lg z-50"}>
