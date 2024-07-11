@@ -1,11 +1,14 @@
 "use client"
 
 import Sidebar from "@/components/sidebar";
+import Link from "next/link";
 import { useEffect, useState } from "react";
+import { IoMdAdd } from "react-icons/io";
 import Cart from "./cart";
 
 function Projects() {
   const [projects, setProjects] = useState( []);
+  const [tooltip, setTooltip] = useState(false);
   useEffect(() => {
       //Temprary Solution:
       if(!localStorage.getItem("User")){
@@ -37,6 +40,12 @@ function Projects() {
           <div className="lg:p-10 flex gap-10 flex-wrap w-full justify-center items-center mt-10">
              {projects?.map((item, index) => <Cart key={index} project={item}/>)}
           </div>
+
+          {tooltip && <p className="fixed right-0 bottom-2 text-xs uppercase bg-gray-200 p-0.5 rounded-md" >Create new project!</p>}
+          <Link className="fixed right-10 bottom-8 bg-gray-200 p-5 rounded-full cursor-pointer" onMouseEnter={() => setTooltip(true)}
+        onMouseLeave={() => setTooltip(false)} href={"/admin/createNewProject"}>
+              <IoMdAdd className="w-6 h-6"/>
+          </Link>
         </div>
       </div>
     )
