@@ -42,7 +42,7 @@ function Projects() {
           </div>
 
           {tooltip && <p className="fixed right-0 bottom-2 text-xs uppercase bg-gray-200 p-0.5 rounded-md" >Create new project!</p>}
-          <Link className="fixed right-10 bottom-8 bg-gray-200 p-5 rounded-full cursor-pointer" onMouseEnter={() => setTooltip(true)}
+          <Link className="fixed right-5 bottom-5 lg:right-10 lg:bottom-8 bg-gray-200 p-5 rounded-full cursor-pointer" onMouseEnter={() => setTooltip(true)}
         onMouseLeave={() => setTooltip(false)} href={"/admin/createNewProject"}>
               <IoMdAdd className="w-6 h-6"/>
           </Link>
