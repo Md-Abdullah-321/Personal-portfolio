@@ -15,6 +15,7 @@ function Content() {
     return (
       <div className="w-full min-h-screen flex justify-between">
          <Sidebar/>
+         <div className="lg:w-[300px] hidden lg:block"></div>
         <div className="h-screen w-10/12">
 
         </div>

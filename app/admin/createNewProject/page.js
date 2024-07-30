@@ -2,7 +2,7 @@
 
 import { storage } from "@/lib/firebase";
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { v4 } from 'uuid';
 
 const init = {
@@ -18,9 +18,63 @@ const init = {
 }
 
 function CreateNewProject() {
-    const [formData, setFormData] = useState({ ...init });
-    const [featureCount, setFeatureCount] = useState([...init.features]);
+    const [formData, setFormData] = useState();
+    const [featureCount, setFeatureCount] = useState([]);
     const [projectImages, setProjectImages] = useState(null);
+
+    useEffect(() => {
+        const project = JSON.parse(localStorage.getItem("project"));
+
+        if(project){
+
+            let frontEnd = "";
+            project.frontEnd.forEach((item) => {
+                frontEnd = frontEnd + " " + item;  
+            })
+
+            let backEnd = "";
+            project.backEnd.forEach((item) => {
+                backEnd = backEnd + " " + item;  
+            })
+
+            let tools = "";
+            project.tools.forEach((item) => {
+                tools = tools + " " + item;  
+            })
+
+            setFormData((prev) => {
+                return {
+                    ...prev,
+                    ...project,
+                    frontEnd,
+                    backEnd,
+                    tools
+                }
+            });
+
+            setFeatureCount((prev) => {
+                const updatedFeatures = project.features.map(item => item.replace(/<\/?(li|strong)>/g, ""));
+                return [...updatedFeatures];
+            })
+        }else {
+            setFormData((prev) => {
+                return {
+                    ...prev,
+                    ...init
+                }
+            });
+
+            setFeatureCount((prev) => {
+                return [
+                    ...init.features
+                ]
+            });
+        }
+
+        setTimeout(() => {
+            localStorage.removeItem("project");
+        }, 1000);
+    }, []);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -61,39 +115,48 @@ function CreateNewProject() {
     const handleSubmit = async (e) => {
         e.preventDefault();
     
-        // Check if project image quantity is valid
-        if (projectImages === null) {
-            return alert("Please add some project images.");
-        }
-        if (projectImages.length > 4 || projectImages.length < 2) {
-            return alert("Project images quantity should be between 2 and 4");
-        }
-    
         // Return if any required field is empty
         if (!formData.title || !formData.overview) {
             return alert("Please provide project title and overview.");
         }
     
+        if(!formData._id){
+            // Check if project image quantity is valid
+            if (projectImages === null) {
+                return alert("Please add some project images.");
+            }
+            if (projectImages.length > 4 || projectImages.length < 2) {
+                return alert("Project images quantity should be between 2 and 4");
+            }
+        }
         // Formatting features as list items
-        const addStrongTag = featureCount.map(item => {
-            const title = item.split(":")[0];
-            const description = item.split(":")[1];
-            return `<strong>${title} : </strong>${description};`
+        let addStrongTag = [];
+        featureCount.map(item => {
+            if(item.split(":")[0].trim() !== "" || item.split(":")[0].trim() !== "undefined"){
+                const title = item.split(":")[0];
+                const description = item.split(":")[1];
+                addStrongTag.push(`<strong>${title} : </strong>${description}`);
+            }
         })
         const formattedFeatures = addStrongTag.map(item => `<li>${item}</li>`);
     
-        // Upload images to Firebase Storage and get URLs
-        const storageRef = ref(storage, 'projects');
-        const imageURLs = await uploadImagesAndGetUrls(projectImages, storageRef);
+        let imageURLs = formData.projectImages;
+       
+        if(projectImages){
+             // Upload images to Firebase Storage and get URLs
+            const storageRef = ref(storage, 'projects');
+            imageURLs = await uploadImagesAndGetUrls(projectImages, storageRef);
+        }
     
         // Prepare data to send in POST request
         const postData = {
+            id: formData._id || "",
             title: formData.title,
             overview: formData.overview,
             features: formattedFeatures,
-            frontEnd: formData.frontEnd[0].split(" "),
-            backEnd: formData.backEnd[0].split(" "),
-            tools: formData.tools[0].split(" "),
+            frontEnd: formData.frontEnd[0].trim().split(" "),
+            backEnd: formData.backEnd[0].trim().split(" "),
+            tools: formData.tools[0].trim().split(" "),
             projectImages: imageURLs,
             live_url: formData.live_url,
             github_url: formData.github_url,
@@ -101,11 +164,16 @@ function CreateNewProject() {
     
         // Send POST request
         try {
-            const response = await fetch('https://portfolio-server-c0fa.onrender.com/api/project/', {
+            const response = postData.id ? await fetch(`https://portfolio-server-c0fa.onrender.com/api/project/${postData.id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(postData),
+            }) : await fetch('https://portfolio-server-c0fa.onrender.com/api/project/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    // Add any additional headers if needed
                 },
                 body: JSON.stringify(postData),
             });
@@ -119,7 +187,7 @@ function CreateNewProject() {
             console.log('Success:', responseData);
     
             // Optionally, show success message to user
-            alert('Project submitted successfully!');
+            alert(responseData.messege);
         } catch (error) {
             console.error('Error:', error);
             // Handle error - show error message to user or retry
@@ -152,8 +220,8 @@ function CreateNewProject() {
             <div className="bg-violet-300 mx-2 sm:mx-0 w-full sm:w-2/3 lg:w-1/2 p-4">
                 <h3 className="uppercase font-semibold mb-5 text-xl">Create New Project</h3>
                 <form className="flex flex-col gap-y-2">
-                    <input type="text" placeholder="Project title" className="p-1 outline-none text-sm text-gray-600 rounded-sm" name="title" value={formData.title} onChange={handleChange}/>
-                    <textarea type="text" placeholder="Project Overview" className="p-1 outline-none text-sm text-gray-600 rounded-sm h-20" name="overview" value={formData.overview} onChange={handleChange}/>
+                    <input type="text" placeholder="Project title" className="p-1 outline-none text-sm text-gray-600 rounded-sm" name="title" value={formData?.title} onChange={handleChange}/>
+                    <textarea type="text" placeholder="Project Overview" className="p-1 outline-none text-sm text-gray-600 rounded-sm h-20" name="overview" value={formData?.overview} onChange={handleChange}/>
                     
                     {featureCount.map((item, index) => (
                         <div className="flex" key={index}>
@@ -165,11 +233,11 @@ function CreateNewProject() {
                         </div>
                     ))}
                     
-                    <input type="text" placeholder="Front-end technology" className="p-1 outline-none text-sm text-gray-600 rounded-sm" name="frontEnd" value={formData.frontEnd} onChange={handleChange}/>
-                    <input type="text" placeholder="Back-end technology" className="p-1 outline-none text-sm text-gray-600 rounded-sm" name="backEnd" value={formData.backEnd} onChange={handleChange}/>
-                    <input type="text" placeholder="Tools" className="p-1 outline-none text-sm text-gray-600 rounded-sm" name="tools" value={formData.tools} onChange={handleChange}/>
-                    <input type="text" placeholder="Live URL" className="p-1 outline-none text-sm text-gray-600 rounded-sm" name="live_url" value={formData.live_url} onChange={handleChange}/>
-                    <input type="text" placeholder="GitHub URL" className="p-1 outline-none text-sm text-gray-600 rounded-sm" name="github_url" value={formData.github_url} onChange={handleChange}/>
+                    <input type="text" placeholder="Front-end technology" className="p-1 outline-none text-sm text-gray-600 rounded-sm" name="frontEnd" value={formData?.frontEnd} onChange={handleChange}/>
+                    <input type="text" placeholder="Back-end technology" className="p-1 outline-none text-sm text-gray-600 rounded-sm" name="backEnd" value={formData?.backEnd} onChange={handleChange}/>
+                    <input type="text" placeholder="Tools" className="p-1 outline-none text-sm text-gray-600 rounded-sm" name="tools" value={formData?.tools} onChange={handleChange}/>
+                    <input type="text" placeholder="Live URL" className="p-1 outline-none text-sm text-gray-600 rounded-sm" name="live_url" value={formData?.live_url} onChange={handleChange}/>
+                    <input type="text" placeholder="GitHub URL" className="p-1 outline-none text-sm text-gray-600 rounded-sm" name="github_url" value={formData?.github_url} onChange={handleChange}/>
 
                     <input 
                         type="file" 

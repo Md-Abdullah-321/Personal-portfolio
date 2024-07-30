@@ -76,6 +76,7 @@ function Contact() {
   return (
     <div className="w-full min-h-screen flex justify-between relative">
       <Sidebar />
+      <div className="lg:w-[300px] hidden lg:block"></div>
       <div className="h-screen lg:w-10/12 p-2 mt-14 lg:mt-0 sm:p-10 relative">
         <div className="flex items-start gap-4 w-full flex-wrap">
           {messages.length > 0 && messages.map(message => (

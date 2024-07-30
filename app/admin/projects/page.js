@@ -2,13 +2,15 @@
 
 import Sidebar from "@/components/sidebar";
 import Link from "next/link";
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from "react";
 import { IoMdAdd } from "react-icons/io";
 import Cart from "./cart";
 
 function Projects() {
-  const [projects, setProjects] = useState( []);
+  const [projects, setProjects] = useState([]);
   const [tooltip, setTooltip] = useState(false);
+  const router = useRouter()
   useEffect(() => {
       //Temprary Solution:
       if(!localStorage.getItem("User")){
@@ -26,10 +28,40 @@ function Projects() {
         fetchProject();
     }, [])
 
+    const handleDeleteProject = async (id) => {
+      const isAgree = confirm("Are you sure to delete this project?");
+      if(isAgree){
+       const response = await fetch(`https://portfolio-server-c0fa.onrender.com/api/project/${id}`, {
+           method: "DELETE"
+       });
+
+       const data = await response.json();
+
+       if(data.success){
+           alert(data.messege);
+       }else{
+           alert("Could not delete project.");
+       }
+      }
+     
+
+      //Remove project from state:
+      setProjects((prev) => {
+        const updatedState = prev.filter((item) => item._id !== id);
+
+        return updatedState;
+      })
+   }
+
+   const handleEditProject = (project) => {
+      localStorage.setItem("project", JSON.stringify(project));
+      router.push('/admin/createNewProject')
+   }
   
     return (
       <div className="w-full min-h-screen flex justify-between">
          <Sidebar/>
+         <div className="lg:w-[300px] hidden lg:block"></div>
         <div className="min-h-screen w-full md:w-10/12 my-10">
             <div className="flex flex-col justify-center items-center w-full">
                 <h2 className=" uppercase text-5xl sm:text-6xl md:text-8xl font-extrabold text-gray-200">Portfolio</h2>
@@ -38,7 +70,7 @@ function Projects() {
 
 
           <div className="lg:p-10 flex gap-10 flex-wrap w-full justify-center items-center mt-10">
-             {projects?.map((item, index) => <Cart key={index} project={item}/>)}
+             {projects?.map((item, index) => <Cart key={index} project={item} handleDeleteProject={handleDeleteProject} handleEditProject={handleEditProject}/>)}
           </div>
 
           {tooltip && <p className="fixed right-0 bottom-2 text-xs uppercase bg-gray-200 p-0.5 rounded-md" >Create new project!</p>}
