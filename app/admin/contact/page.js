@@ -93,7 +93,7 @@ function Contact() {
         </div>
         {modalVisible && (
           <div ref={modalRef} className="modal-overlay modal-overlay-active flex justify-center items-center">
-            <div ref={modalContentRef} className="modal-slide-in bg-white w-full p-2 sm:p-0 sm:w-80 sm:w-96 h-60 z-50 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-md">
+            <div ref={modalContentRef} className="modal-slide-in bg-white w-full p-2 sm:p-0 sm:w-80 h-60 z-50 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-md">
               <ShowContentModal
                 name={modalData.name}
                 subject={modalData.subject}
