@@ -9,10 +9,12 @@ import { MdContentPasteSearch, MdDashboardCustomize } from "react-icons/md";
 
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 function Sidebar() {
   const [screenWidth, setScreenWidth] = useState(0);
   const [sidebar, setSidebar] = useState(false);
   const pathname = usePathname();
+  const user = useSelector((state) => state.user);
 
 
     useEffect(() => {
@@ -67,12 +69,12 @@ function Sidebar() {
     {screenWidth < 1024 && !sidebar && <div className=' bg-violet-600 h-10 flex justify-center items-center w-12 sm:w-14 m-2 rounded-sm cursor-pointer absolute' onClick={() => setSidebar(true)}><FaBars className='w-6 h-6 sm:w-8 sm:h-8 text-white'/></div>}
     <div className={screenWidth < 1024 ? sidebar ? "show_sidebar w-[300px] h-screen bg-violet-600 flex flex-col absolute rounded-tr-lg rounded-br-lg z-50": "sidebar_position w-[300px] h-screen bg-violet-600 flex flex-col absolute rounded-tr-lg rounded-br-lg z-50": "w-[300px] h-screen bg-violet-600 flex flex-col rounded-tr-lg rounded-br-lg z-50 fixed"}>
         {/* header  */}
-        <div className="h-40 md:h-60 w-full bg-white border-2 border-violet-600 shadow-md flex items-center justify-around rounded-lg">
+        <div className="h-32 w-full bg-white border-2 border-violet-600 shadow-md flex items-center justify-around rounded-lg">
         <div className='w-[90px] h-[90px] rounded-full border-2 border-violet-600 flex justify-center items-center'>
         {screenWidth < 1024 && <IoClose className='absolute top-0 right-0 w-8 h-8 m-2 bg-gray-200 rounded-sm cursor-pointer' onClick={() => setSidebar(false)}/>}
         <Image
               className='w-[85px] h-[85px] rounded-full object-cover'
-               src={"/Dashboard.JPG"}
+               src={user?.profilePicture || ""}
                width={1024}
                height={1024}
                alt="Md Abdullah Login page Image"
@@ -107,7 +109,7 @@ function Sidebar() {
 
         <div className='h-3/6'></div>
         {/* Footer  */}
-        <div className='h-16 sm:h-20 w-full bg-white border-2 border-violet-600 shadow-md flex items-center justify-around rounded-lg hover-container'  >
+        <div className='h-16 w-full bg-white border-2 border-violet-600 shadow-md flex items-center justify-around rounded-lg hover-container'  >
             <GiSettingsKnobs className='w-6 h-6 sm:w-8 sm:h-8'/>
                 <Link href="/admin/settings" className='text-2xl uppercase font-medium'>Settings</Link> 
             <FaArrowRight className='w-6 h-6 sm:w-8 sm:h-8 relative arrow_right'/>
