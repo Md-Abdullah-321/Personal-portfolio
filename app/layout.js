@@ -1,9 +1,11 @@
 "use client"; // Ensure this is the first line
 
+import { store } from '@/features/store';
 import { Inter } from 'next/font/google';
 import Head from 'next/head';
 import { usePathname } from 'next/navigation';
 import { useEffect } from 'react';
+import { Provider } from 'react-redux';
 import ReturnFooter from "./footer";
 import './globals.css';
 import { ReturnCurrentNavbar } from "./navbar/ReturnCurrentNavbar";
@@ -65,7 +67,9 @@ export default function RootLayout({ children }) {
       </Head>
       <body className={inter.className}>
         {!isAdminPath && !isProjectDetailsPath && <ReturnCurrentNavbar />}
-        {children}
+        <Provider store={store}>
+          {children}
+        </Provider>
         {!isAdminPath && !isProjectDetailsPath && <ReturnFooter />}
       </body>
     </html>

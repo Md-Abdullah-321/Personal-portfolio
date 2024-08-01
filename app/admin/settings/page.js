@@ -3,13 +3,15 @@
 import Sidebar from "@/components/sidebar";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 function Settings() {
   const [screenWidth, setScreenWidth] = useState(0);
+  const user = useSelector((state) => state.user);
   const router = useRouter();
+
   useEffect(() => {
-      //Temprary Solution:
-      if(!localStorage.getItem("User")){
+      if(!user){
           return router.push('/admin/login', { scroll: false });
       }
   }, []);

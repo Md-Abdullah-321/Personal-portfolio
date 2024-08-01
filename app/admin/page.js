@@ -4,9 +4,12 @@ import Loader from "@/components/loading";
 import Sidebar from "@/components/sidebar";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 export default function AdminDashboard() {
     const [loading, setLoading] = useState(true);
+    const user = useSelector((state) => state.user);
+    
     const router = useRouter();
     useEffect(() => {
       const timer = setTimeout(() => {
@@ -18,7 +21,7 @@ export default function AdminDashboard() {
 
     useEffect(() => {
         //Temprary Solution:
-        if(!localStorage.getItem("User")){
+        if(!user){
             return router.push('/admin/login', { scroll: false });
         }
     }, []);

@@ -1,8 +1,10 @@
 "use client"
 
+import { setUser } from '@/features/store';
 import Image from 'next/image';
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from 'react-redux';
 
 const ButtonBackground = {
   background: 'rgb(66,29,136)',
@@ -19,8 +21,11 @@ export default function Login() {
   const [backgroundImage, setBackgroundImage] = useState('');
   const router = useRouter();
 
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();  
+
   useEffect(() => {
-    if(localStorage.getItem("User")){
+    if(user){
       return router.push('/admin', { scroll: false });
     }
     const imageUrl = '/login.svg'; 
@@ -56,9 +61,11 @@ export default function Login() {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
+        console.log(data);
         if(data.success){
-          localStorage.setItem("User", "Md Abdullah");
-          return router.push('/admin', { scroll: false });
+           alert(data.messege);
+           dispatch(setUser(data.payload));
+           router.push('/admin', { scroll: false });
         }
       } catch (error) {
         console.error('Error:', error);

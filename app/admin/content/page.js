@@ -2,12 +2,13 @@
 
 import Sidebar from "@/components/sidebar";
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 function Content() {
+  const user = useSelector((state) => state.user);
 
   useEffect(() => {
-      //Temprary Solution:
-      if(!localStorage.getItem("User")){
+      if(!user){
           return router.push('/admin/login', { scroll: false });
       }
   }, []);
