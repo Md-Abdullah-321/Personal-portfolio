@@ -52,7 +52,7 @@ export default function Login() {
         const response = await fetch("https://portfolio-server-c0fa.onrender.com/api/auth/", {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
           },
           body: JSON.stringify({ email: formData.email, password: formData.password })
         });
@@ -61,9 +61,10 @@ export default function Login() {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
-        console.log(data);
         if(data.success){
            alert(data.messege);
+           document.cookie = `token=${data.payload.token}; Secure; SameSite=None;`;
+           delete data.payload.token;
            dispatch(setUser(data.payload));
            router.push('/admin', { scroll: false });
         }

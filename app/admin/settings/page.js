@@ -1,9 +1,12 @@
 "use client"
 
 import Sidebar from "@/components/sidebar";
+import { storage } from "@/lib/firebase";
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { v4 } from 'uuid';
 
 
 function Settings() {
@@ -39,7 +42,47 @@ function Settings() {
 
   const handleUpdateUserInfo = async (e) => {
     e.preventDefault();
-    console.log(formData);
+
+    const updatedInfo = formData;
+    const storageRef = ref(storage, 'user');
+    if(updatedInfo.resume.name){
+      const imageRef = ref(storageRef, `${updatedInfo.resume.name + v4()}`);
+      await uploadBytes(imageRef, updatedInfo.resume);
+      updatedInfo.resume =  await getDownloadURL(imageRef);
+    }
+
+    if(updatedInfo.profilePicture.name){
+      const imageRef = ref(storageRef, `${updatedInfo.profilePicture.name + v4()}`);
+      await uploadBytes(imageRef, updatedInfo.profilePicture);
+      updatedInfo.profilePicture =  await getDownloadURL(imageRef);
+    }
+
+     // Send POST request
+     try {
+      const token = localStorage.getItem('token');
+
+      const response = await fetch(`https://portfolio-server-c0fa.onrender.com/api/user/`, {
+        method: 'PUT',
+        headers: {
+          'Authorization': `Bearer ${token}`, 
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include', 
+        body: JSON.stringify({
+          ...updatedInfo,
+          id: updatedInfo._id
+        }),
+      });
+
+      const data = await response.json();
+      console.log('Response:', data);
+
+  } catch (error) {
+      console.error('Error:', error);
+      // Handle error - show error message to user or retry
+      alert('Failed to submit project. Please try again later.');
+  }
+
   }
 
   // useEffect(() => {
