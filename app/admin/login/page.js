@@ -1,10 +1,11 @@
 "use client"
 
 import { setUser } from '@/features/store';
+import { getCookie } from '@/helpers/getCookie';
 import Image from 'next/image';
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 const ButtonBackground = {
   background: 'rgb(66,29,136)',
@@ -21,11 +22,10 @@ export default function Login() {
   const [backgroundImage, setBackgroundImage] = useState('');
   const router = useRouter();
 
-  const user = useSelector((state) => state.user);
   const dispatch = useDispatch();  
 
   useEffect(() => {
-    if(user){
+    if(getCookie("token")){
       return router.push('/admin', { scroll: false });
     }
     const imageUrl = '/login.svg'; 
@@ -49,7 +49,7 @@ export default function Login() {
       }
 
       try {
-        const response = await fetch("https://portfolio-server-c0fa.onrender.com/api/auth/", {
+        const response = await fetch("http://localhost:8000/api/api/auth/", {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -63,7 +63,7 @@ export default function Login() {
         const data = await response.json();
         if(data.success){
            alert(data.messege);
-           document.cookie = `token=${data.payload.token}; Secure; SameSite=None;`;
+          //  document.cookie = `token=${data.payload.token}; Secure; SameSite=None;`;
            delete data.payload.token;
            dispatch(setUser(data.payload));
            router.push('/admin', { scroll: false });

@@ -1,16 +1,15 @@
 "use client"
 
 import Sidebar from "@/components/sidebar";
+import { getCookie } from "@/helpers/getCookie";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
 
 function Content() {
-  const user = useSelector((state) => state.user);
   const router = useRouter();
 
   useEffect(() => {
-      if(!user){
+      if(!getCookie("token")){
           return router.push('/admin/login', { scroll: false });
       }
   }, []);

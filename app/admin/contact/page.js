@@ -1,8 +1,8 @@
 "use client"
 import ShowContentModal from '@/components/showContentModal';
 import Sidebar from '@/components/sidebar';
+import { getCookie } from '@/helpers/getCookie';
 import { useEffect, useRef, useState } from 'react';
-import { useSelector } from 'react-redux';
 import ContactCard from './contactCard';
 
 
@@ -16,7 +16,6 @@ function Contact() {
   });
 
 
-  const user = useSelector((state) => state.user);
   const modalRef = useRef(null);
   const modalContentRef = useRef(null);
 
@@ -34,7 +33,7 @@ function Contact() {
   };
 
   useEffect(() => {
-    if (!user) {
+    if (!getCookie("token")) {
       return window.location.href = '/admin/login'; 
     }
 

@@ -1,11 +1,14 @@
 "use client"
 
 import Sidebar from "@/components/sidebar";
+import { setUser } from "@/features/store";
+import { getCookie } from "@/helpers/getCookie";
 import { storage } from "@/lib/firebase";
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { v4 } from 'uuid';
 
 
@@ -14,9 +17,10 @@ function Settings() {
   const [formData, setFormData] = useState({});
   const user = useSelector((state) => state.user);
   const router = useRouter();
+  const dispatch = useDispatch();  
 
   useEffect(() => {
-      if(!user){
+      if(!getCookie("token")){
           return router.push('/admin/login', { scroll: false });
       }
       setFormData({...user})
@@ -59,7 +63,8 @@ function Settings() {
 
      // Send POST request
      try {
-      const token = localStorage.getItem('token');
+      const token = getCookie("token");
+      
 
       const response = await fetch(`https://portfolio-server-c0fa.onrender.com/api/user/`, {
         method: 'PUT',
@@ -75,6 +80,10 @@ function Settings() {
       });
 
       const data = await response.json();
+      if(data.success){
+        dispatch(setUser(data.payload));
+        alert(data.messege)
+      }
       console.log('Response:', data);
 
   } catch (error) {
@@ -85,21 +94,33 @@ function Settings() {
 
   }
 
-  // useEffect(() => {
-  //   const updateScreenWidth = () => setScreenWidth(window.innerWidth);
-  //   updateScreenWidth();
-  //   window.addEventListener('resize', updateScreenWidth);
-  //   return () => window.removeEventListener('resize', updateScreenWidth);
-  // }, []);
+  const handleLogoutUser = () => {
+    const isAgree = confirm("Are you sure to logout?");
+
+    if(isAgree){
+      
+    }
+  }
+
     return (
       <div className="w-full min-h-screen flex justify-between">
          <Sidebar/>
          <div className="lg:w-[300px] hidden lg:block"></div>
         <div className="h-screen w-full md:w-10/12 my-16 md:my-20 mx-auto px-2">
             {/* Personal info */}
-            <div className="bg-violet-200 w-full lg:w-2/3 mx-auto p-4 rounded-md">
+            <div className="bg-violet-200 w-full lg:w-2/3 mx-auto p-4 rounded-md relative">
               <h2 className="text-xl uppercase mb-4 font-bold text-gray-500">Basic info</h2>
+
+              <div className="absolute right-4 top-4 bg-red-500 text-white p-1 text-sm cursor-pointer shadow-sm rounded-sm">
+                <button onClick={handleLogoutUser}>Logout</button>
+              </div>
               <form className="w-full flex flex-col gap-y-2">
+                <div div className="flex text-gray-700 mx-auto">
+                  <label htmlFor="profilePicture" className="cursor-pointer">
+                    <Image src={formData.profilePicture} width={1000} height={1000} alt="Profile Image" className="w-40 h-40 rounded-full mx-auto mb-4"/>
+                  </label>
+                  <input type="file" name="profilePicture" id="profilePicture" className="hidden" onChange={handleChangeBasicInfo}/>
+                </div>
                 <input type="text" name="username" value={formData.username} className="outline-none p-3 rounded-md text-gray-600" placeholder="Enter name" onChange={handleChangeBasicInfo}/>
                 <input type="email" name="email" value={formData.email} className="outline-none p-3 rounded-md text-gray-600" placeholder="Enter email" onChange={handleChangeBasicInfo}/>
                 <input type="number" name="phoneNumber" value={formData.phoneNumber} className="outline-none p-3 rounded-md text-gray-600" placeholder="Enter number" onChange={handleChangeBasicInfo}/>
@@ -109,10 +130,6 @@ function Settings() {
                 <div className="flex text-gray-600" >
                   <label htmlFor="resume" className="bg-violet-600 text-white px-4 py-2 rounded-sm hover:bg-violet-700 transition-all duration-500 cursor-pointer ">Add Resume</label>
                   <input type="file" name="resume" id="resume" className="hidden" onChange={handleChangeBasicInfo}/>
-                </div>
-                <div className="flex text-gray-700">
-                <label htmlFor="profilePicture" className="bg-violet-600 text-white px-4 py-2 rounded-sm hover:bg-violet-700 transition-all duration-500 cursor-pointer">Change Profile</label>
-                <input type="file" name="profilePicture" id="profilePicture" className="hidden" onChange={handleChangeBasicInfo}/>
                 </div>
                 </div>
                 

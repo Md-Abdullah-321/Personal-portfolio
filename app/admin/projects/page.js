@@ -1,22 +1,21 @@
 "use client"
 
 import Sidebar from "@/components/sidebar";
+import { getCookie } from "@/helpers/getCookie";
 import Link from "next/link";
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from "react";
 import { IoMdAdd } from "react-icons/io";
-import { useSelector } from "react-redux";
 import Cart from "./cart";
 
 function Projects() {
   const [projects, setProjects] = useState([]);
   const [tooltip, setTooltip] = useState(false);
-  const user = useSelector((state) => state.user);
   const router = useRouter()
 
   useEffect(() => {
       //Temprary Solution:
-      if(!user){
+      if(!getCookie("token")){
           return router.push('/admin/login', { scroll: false });
       }
   }, []);
