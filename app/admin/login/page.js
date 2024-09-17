@@ -49,7 +49,7 @@ export default function Login() {
       }
 
       try {
-        const response = await fetch("https://portfolio-server-c0fa.onrender.com/api/auth/", {
+        const response = await fetch("https://portfolio-server-c0fa.onrender.com/api/auth/signin", {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -63,7 +63,7 @@ export default function Login() {
         const data = await response.json();
         if(data.success){
            alert(data.messege);
-           document.cookie = `token=${data.payload.token}; Secure; SameSite=None;`;
+          //  document.cookie = `token=${data.payload.token}; Secure; SameSite=None;`;
            delete data.payload.token;
            dispatch(setUser(data.payload));
            router.push('/admin', { scroll: false });
