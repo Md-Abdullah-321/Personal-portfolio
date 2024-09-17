@@ -42,36 +42,39 @@ export default function Login() {
   }
 
   const handleSubmit = async (e) => {
-      e.preventDefault();
-
-      if(formData.email == " " || formData.password === " "){
-        return alert("Please, fill the black fields.")
+    e.preventDefault();
+  
+    if (formData.email === "" || formData.password === "") {
+      return alert("Please, fill in the blank fields.");
+    }
+  
+    try {
+      const response = await fetch("https://portfolio-server-c0fa.onrender.com/api/auth/signin", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include', 
+        body: JSON.stringify({ email: formData.email, password: formData.password }),
+      });
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
-
-      try {
-        const response = await fetch("https://portfolio-server-c0fa.onrender.com/api/auth/signin", {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ email: formData.email, password: formData.password })
-        });
-    
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
-        if(data.success){
-           alert(data.messege);
-          //  document.cookie = `token=${data.payload.token}; Secure; SameSite=None;`;
-           delete data.payload.token;
-           dispatch(setUser(data.payload));
-           router.push('/admin', { scroll: false });
-        }
-      } catch (error) {
-        console.error('Error:', error);
+  
+      const data = await response.json();
+  
+      if (data.success) {
+        alert(data.messege);
+        delete data.payload.token;
+        dispatch(setUser(data.payload));
+        router.push('/admin', { scroll: false });
       }
-  }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+  
 
  
   return (
