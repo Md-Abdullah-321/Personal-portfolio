@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { FaFacebookF, FaGithub, FaLinkedinIn } from "react-icons/fa";
 import { FaWhatsapp } from "react-icons/fa6";
 import { MdOutlineFileDownload } from "react-icons/md";
+import { useSelector } from "react-redux";
 
 
 const ButtonBackground = {
@@ -13,6 +14,7 @@ const ButtonBackground = {
 };
 
 export default function HeroSection() {
+  const user = useSelector((state) => state.user);
   return (
     <div className=" min-h-[95vh] sm:min-h-[650px] flex flex-col-reverse md:flex-row justify-around items-center gap-x-10 p-6 lg:p-0 font-sans" style={ButtonBackground} id='home'>
       {/* text, button and links  */}
@@ -25,7 +27,7 @@ export default function HeroSection() {
                stiffness: 30,
                duration: 1,
        }}
-        className='text-white text-xl sm:text-2xl font-semibold'>I am Md Abdullah <span className="text-xs font-medium">( MERN Stack Developer || Flutter Developer || Bug Fixer 🐞)</span></motion.h5>
+        className='text-white text-xl sm:text-2xl font-semibold'>I am {user?.name} <span className="text-xs font-medium">( MERN Stack Developer || Flutter Developer || Bug Fixer 🐞)</span></motion.h5>
         <motion.h2 
           initial={{x: "-500px", opacity: "0"}}
           animate={{ x: "0px", opacity: "1"}}

@@ -1,13 +1,13 @@
 "use client"
 
 import Sidebar from "@/components/sidebar";
-import { setUser } from "@/features/store";
-import { getCookie } from "@/helpers/getCookie";
+import { clearUser, setUser } from "@/features/store";
 import { storage } from "@/lib/firebase";
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { FaFacebook, FaGithub, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 import { useDispatch, useSelector } from "react-redux";
 import { v4 } from 'uuid';
 
@@ -19,40 +19,73 @@ function Settings() {
   const router = useRouter();
   const dispatch = useDispatch();  
 
+  
   useEffect(() => {
-      if(!getCookie("token")){
+      if(!user){
           return router.push('/admin/login', { scroll: false });
       }
+      
+      
       setFormData({...user})
-  }, []);
-
-  const handleChangeBasicInfo = (e) => {
-    if(e.target.name === "resume" || e.target.name === "profilePicture"){
-      setFormData((prev) => {
-        return {
-          ...prev,
-          [e.target.name]: e.target.files[0]
-        }
-      })
-    }else {
-      setFormData((prev) => {
-        return {
-          ...prev,
-          [e.target.name]: e.target.value
-        }
-      })
+    }, []);
+    
+    const handleChangeBasicInfo = (e) => {
+      if(e.target.name === "resume" || e.target.name === "profilePicture"){
+        setFormData((prev) => {
+          return {
+            ...prev,
+            [e.target.name]: e.target.files[0]
+          }
+        })
+      }else if(e.target.name === "primaryPhoneNumber" || e.target.name === "secondaryPhoneNumber"){
+         if(e.target.name === "primaryPhoneNumber"){ 
+            setFormData((prev) => {
+              return {
+                ...prev,
+                phoneNumbers: [e.target.value, prev.phoneNumbers[1]]
+              }
+            })
+          }else {
+            setFormData((prev) => {
+              return {
+                ...prev,
+                phoneNumbers: [prev.phoneNumbers[0], e.target.value]
+              }
+            })
+          }
+      }
+      else if(e.target.name === "facebook" || e.target.name === "github" || e.target.name === "linkedin" || e.target.name === "whatsApp"){
+        setFormData((prev) => {
+          return {
+            ...prev,
+            socialLinks: {
+              ...prev.socialLinks,
+              [e.target.name]: e.target.value
+            }
+          }
+        })
+      }
+      else {
+        setFormData((prev) => {
+          return {
+            ...prev,
+            [e.target.name]: e.target.value
+          }
+        })
+      }
     }
-  }
-
-  const handleUpdateUserInfo = async (e) => {
-    e.preventDefault();
-
-    const updatedInfo = formData;
-    const storageRef = ref(storage, 'user');
-    if(updatedInfo.resume.name){
-      const imageRef = ref(storageRef, `${updatedInfo.resume.name + v4()}`);
-      await uploadBytes(imageRef, updatedInfo.resume);
-      updatedInfo.resume =  await getDownloadURL(imageRef);
+    
+    console.log(formData);
+    
+    const handleUpdateUserInfo = async (e) => {
+      e.preventDefault();
+      
+      const updatedInfo = formData;
+      const storageRef = ref(storage, 'user');
+      if(updatedInfo.resume.name){
+        const imageRef = ref(storageRef, `${updatedInfo.resume.name + v4()}`);
+        await uploadBytes(imageRef, updatedInfo.resume);
+        updatedInfo.resume =  await getDownloadURL(imageRef);
     }
 
     if(updatedInfo.profilePicture.name){
@@ -61,15 +94,12 @@ function Settings() {
       updatedInfo.profilePicture =  await getDownloadURL(imageRef);
     }
 
-     // Send POST request
-     try {
-      const token = getCookie("token");
+    // Send POST request
+    try {
       
-
       const response = await fetch(`https://portfolio-server-c0fa.onrender.com/api/user/`, {
         method: 'PUT',
         headers: {
-          'Authorization': `Bearer ${token}`, 
           'Content-Type': 'application/json',
         },
         credentials: 'include', 
@@ -85,25 +115,49 @@ function Settings() {
         alert(data.messege)
       }
       console.log('Response:', data);
-
-  } catch (error) {
+      
+    } catch (error) {
       console.error('Error:', error);
       // Handle error - show error message to user or retry
       alert('Failed to submit project. Please try again later.');
+    }
+    
   }
-
-  }
-
-  const handleLogoutUser = () => {
+  
+  const handleLogoutUser = async() => {
     const isAgree = confirm("Are you sure to logout?");
-
+    
     if(isAgree){
-      
+      try {
+        const response = await fetch(`https://portfolio-server-c0fa.onrender.com/api/auth/signout`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          credentials: 'include',
+        });
+        
+        const data = await response.json();
+        if(data.success){
+          dispatch(clearUser());
+          alert(data.messege);
+          return router.push('/admin/login', { scroll: false });
+        }
+        console.log('Response:', data);
+        
+      } catch (error) {
+        console.error('Error:', error);
+        // Handle error - show error message to user or retry
+        alert('Failed to logout. Please try again later.');
+      }
     }
   }
-
-    return (
-      <div className="w-full min-h-screen flex justify-between">
+  
+  console.log(formData.phoneNumbers);
+  
+  
+  return (
+    <div className="w-full min-h-screen flex justify-between">
          <Sidebar/>
          <div className="lg:w-[300px] hidden lg:block"></div>
         <div className="h-screen w-full md:w-10/12 my-16 md:my-20 mx-auto px-2">
@@ -121,16 +175,89 @@ function Settings() {
                   </label>
                   <input type="file" name="profilePicture" id="profilePicture" className="hidden" onChange={handleChangeBasicInfo}/>
                 </div>
-                <input type="text" name="username" value={formData.username} className="outline-none p-3 rounded-md text-gray-600" placeholder="Enter name" onChange={handleChangeBasicInfo}/>
+
+                <input type="text" name="name" value={formData.name} className="outline-none p-3 rounded-md text-gray-600" placeholder="Enter name" onChange={handleChangeBasicInfo}/>
+                <input type="text" name="jobTitle" value={formData.jobTitle} className="outline-none p-3 rounded-md text-gray-600" placeholder="Enter Job Title" onChange={handleChangeBasicInfo}/>
+                <input type="text" name="jobSubTitle" value={formData.jobSubTitle} className="outline-none p-3 rounded-md text-gray-600" placeholder="Enter Job Sub Title " onChange={handleChangeBasicInfo}/>
                 <input type="email" name="email" value={formData.email} className="outline-none p-3 rounded-md text-gray-600" placeholder="Enter email" onChange={handleChangeBasicInfo}/>
-                <input type="number" name="phoneNumber" value={formData.phoneNumber} className="outline-none p-3 rounded-md text-gray-600" placeholder="Enter number" onChange={handleChangeBasicInfo}/>
-                <textarea name="bio"  value={formData.bio} className="outline-none p-3 rounded-md text-gray-600 md:h-32 lg:-h-28" onChange={handleChangeBasicInfo}/>
-    
-                <div className="flex items-center gap-x-4 w-full">
+                <input type="secondaryEmail" name="secondaryEmail" value={formData.secondaryEmail} className="outline-none p-3 rounded-md text-gray-600" placeholder="Enter secondary email" onChange={handleChangeBasicInfo}/>
+                <input
+                type="text"
+                name="primaryPhoneNumber"
+                value={(formData.phoneNumbers && formData.phoneNumbers.length > 0 ? formData.phoneNumbers[0] : "") || ""}
+                className="outline-none p-3 rounded-md text-gray-600"
+                placeholder="Enter Primary number"
+                onChange={handleChangeBasicInfo}
+              />
+              
+              <input
+                type="text"
+                name="secondaryPhoneNumber"
+                value={(formData.phoneNumbers && formData.phoneNumbers.length > 0 ? formData.phoneNumbers[1] : "") || ""}
+                className="outline-none p-3 rounded-md text-gray-600"
+                placeholder="Enter Secondary number"
+                onChange={handleChangeBasicInfo}
+              />
+
+
+                <textarea name="bioOne"  value={formData.bioOne} className="outline-none p-3 rounded-md text-gray-600 md:h-32 lg:-h-28" onChange={handleChangeBasicInfo} placeholder="Write bio 01"/>
+
+                <textarea name="bioTwo"  value={formData.bioTwo} className="outline-none p-3 rounded-md text-gray-600 md:h-32 lg:-h-28" onChange={handleChangeBasicInfo} placeholder="Write bio 02"/>
+
+                {/* social links  */}
+                <div>
+                  <h2 className="text-xl uppercase font-bold text-gray-500 mt-5">Social Links</h2>
+                  <div className="flex flex-col gap-y-2 mt-2">
+                    <div className="flex items-center relative">
+                      <input
+                        type="text"
+                        name="facebook"
+                        value={formData?.socialLinks?.facebook || ""}
+                        className="outline-none p-3 rounded-md text-gray-600 flex-grow"
+                        placeholder="Enter facebook link"
+                        onChange={handleChangeBasicInfo}
+                      />
+                      <FaFacebook className="ml-2 text-blue-600 absolute w-6 h-6 right-2" />
+                    </div>
+                    <div className="flex items-center relative">
+                      <input
+                        type="text"
+                        name="whatsApp"
+                        value={formData?.socialLinks?.whatsApp || ""}
+                        className="outline-none p-3 rounded-md text-gray-600 flex-grow"
+                        placeholder="Enter WhatsApp number"
+                        onChange={handleChangeBasicInfo}
+                      />
+                      <FaWhatsapp className="ml-2 text-green-500 absolute w-6 h-6 right-2" />
+                    </div>
+                    <div className="flex items-center relative">
+                      <input
+                        type="text"
+                        name="linkedin"
+                        value={formData?.socialLinks?.linkedin || ""}
+                        className="outline-none p-3 rounded-md text-gray-600 flex-grow"
+                        placeholder="Enter LinkedIn link"
+                        onChange={handleChangeBasicInfo}
+                      />
+                      <FaLinkedin className="ml-2 text-blue-700 absolute w-6 h-6 right-2" />
+                    </div>
+                    <div className="flex items-center relative">
+                      <input
+                        type="text"
+                        name="github"
+                        value={formData?.socialLinks?.github || ""}
+                        className="outline-none p-3 rounded-md text-gray-600 flex-grow"
+                        placeholder="Enter GitHub link"
+                        onChange={handleChangeBasicInfo}
+                      />
+                      <FaGithub className="ml-2 text-gray-700 absolute w-6 h-6 right-2" />
+                    </div>
+                  </div>
+                </div>
+                
                 <div className="flex text-gray-600" >
                   <label htmlFor="resume" className="bg-violet-600 text-white px-4 py-2 rounded-sm hover:bg-violet-700 transition-all duration-500 cursor-pointer ">Add Resume</label>
                   <input type="file" name="resume" id="resume" className="hidden" onChange={handleChangeBasicInfo}/>
-                </div>
                 </div>
                 
 
@@ -145,17 +272,4 @@ function Settings() {
 export default Settings;
 
 
-// username
-
-// email
-
-// phoneNumber
-
-// password
-
-// profilePicture
-
-// bio
-
-// resume
 

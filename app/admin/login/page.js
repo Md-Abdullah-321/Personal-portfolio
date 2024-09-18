@@ -1,11 +1,10 @@
 "use client"
 
 import { setUser } from '@/features/store';
-import { getCookie } from '@/helpers/getCookie';
 import Image from 'next/image';
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const ButtonBackground = {
   background: 'rgb(66,29,136)',
@@ -20,12 +19,13 @@ const init = {
 export default function Login() {
   const [formData, setFormData] = useState({...init});
   const [backgroundImage, setBackgroundImage] = useState('');
+  const user = useSelector((state) => state.user);
   const router = useRouter();
 
   const dispatch = useDispatch();  
 
   useEffect(() => {
-    if(getCookie("token")){
+    if(user){
       return router.push('/admin', { scroll: false });
     }
     const imageUrl = '/login.svg'; 
@@ -55,15 +55,15 @@ export default function Login() {
           'Content-Type': 'application/json',
         },
         credentials: 'include', 
-        body: JSON.stringify({ email: formData.email, password: formData.password }),
+        body: JSON.stringify({ email: formData.email, password: formData.password.trim() }),
       });
   
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-  
+      
       const data = await response.json();
-  
+      
       if (data.success) {
         alert(data.messege);
         delete data.payload.token;
