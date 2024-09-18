@@ -32,9 +32,9 @@ export default function About() {
         {/* <h5 className='text-orange-500 font-semibold text-xl'>Hello I'm</h5> */}
         <h1 className='text-5xl font-extrabold'>Expertise in delivering, <br /> top-notch digital solutions </h1>
         <h4 className='text-3xl font-extrabold'>Based in Bangladesh</h4>
-        <p className='text-gray-400'>{user.bioTwo}</p>
+        <p className='text-gray-400'>{user?.bioTwo}</p>
         <motion.a
-            href = {user.resume}
+            href = {user?.resume}
             initial={{x: "50vw"}}
             animate={{x: "0vw"}}
             exit={{x: "50vw"}}

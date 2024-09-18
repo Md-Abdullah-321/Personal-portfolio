@@ -61,8 +61,8 @@ export default function Contact() {
                         {/* text  */}
                         <div>
                             <h4 className="text-gray-600 font-semibold uppercase">Mail Me</h4>
-                            <p className="text-white text-sm">{user.email}</p>
-                            <p className="text-white text-sm">{user.secondaryEmail}</p>
+                            <p className="text-white text-sm">{user?.email}</p>
+                            <p className="text-white text-sm">{user?.secondaryEmail}</p>
                         </div>
                     </div>
 
@@ -74,8 +74,8 @@ export default function Contact() {
                         {/* text  */}
                         <div>
                             <h4 className="text-gray-600 font-semibold uppercase">Contact Me</h4>
-                            <p className="text-white text-sm">{user.phoneNumbers[0].slice(0,4) + " "+ user.phoneNumbers[0].slice(4, 9) + " " + user.phoneNumbers[0].slice(9)}</p>
-                            <p className="text-white text-sm">{user.phoneNumbers[1].slice(0,4) + " "+ user.phoneNumbers[1].slice(4, 9) + " " + user.phoneNumbers[1].slice(9)}</p>
+                            <p className="text-white text-sm">{user?.phoneNumbers[0].slice(0,4) + " "+ user?.phoneNumbers[0].slice(4, 9) + " " + user?.phoneNumbers[0].slice(9)}</p>
+                            <p className="text-white text-sm">{user?.phoneNumbers[1].slice(0,4) + " "+ user?.phoneNumbers[1].slice(4, 9) + " " + user?.phoneNumbers[1].slice(9)}</p>
                         </div>
                     </div>
 
@@ -97,13 +97,13 @@ export default function Contact() {
             <div className="mt-10 lg:mt-20">
             <h3 className="text-white uppercase font-semibold">Social info</h3>
             <div className="flex gap-x-6 items-center mt-5">
-                <a href={`${user.socialLinks['github']}`} className="bg-[#171717] p-4 sm:p-6 md:p-4 rounded-full shadow-md" target="_blank">{<VscGithub className="text-white w-8 h-8 cursor-pointer"/>}</a> 
+                <a href={`${user?.socialLinks['github']}`} className="bg-[#171717] p-4 sm:p-6 md:p-4 rounded-full shadow-md" target="_blank">{<VscGithub className="text-white w-8 h-8 cursor-pointer"/>}</a> 
                 
-                <a href={`${user.socialLinks['facebook']}`} className="bg-[#171717] p-4 sm:p-6 md:p-4  rounded-full shadow-md" target="_blank">{<FaFacebookSquare className="text-white w-8 h-8 cursor-pointer"/>}</a>
+                <a href={`${user?.socialLinks['facebook']}`} className="bg-[#171717] p-4 sm:p-6 md:p-4  rounded-full shadow-md" target="_blank">{<FaFacebookSquare className="text-white w-8 h-8 cursor-pointer"/>}</a>
 
-                <a href={`${user.socialLinks['linkedin']}`}  className="bg-[#171717] p-4 sm:p-6 md:p-4  rounded-full shadow-md" target="_blank">{<FaLinkedin className="text-white w-8 h-8 cursor-pointer"/>}</a>
+                <a href={`${user?.socialLinks['linkedin']}`}  className="bg-[#171717] p-4 sm:p-6 md:p-4  rounded-full shadow-md" target="_blank">{<FaLinkedin className="text-white w-8 h-8 cursor-pointer"/>}</a>
 
-                <a href={`https://wa.me/${user.phoneNumbers['whatsApp']}`} className="bg-[#171717] p-4 sm:p-6 md:p-4  rounded-full shadow-md" target="_blank">{<FaWhatsappSquare className="text-white w-8 h-8 cursor-pointer"/>}</a>
+                <a href={`https://wa.me/${user?.phoneNumbers['whatsApp']}`} className="bg-[#171717] p-4 sm:p-6 md:p-4  rounded-full shadow-md" target="_blank">{<FaWhatsappSquare className="text-white w-8 h-8 cursor-pointer"/>}</a>
             </div>
             </div>
         </div>
