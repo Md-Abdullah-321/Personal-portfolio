@@ -153,7 +153,6 @@ function Settings() {
     }
   }
   
-  console.log(formData.phoneNumbers);
   
   
   return (

@@ -13,8 +13,11 @@ const ButtonBackground = {
     backgroundImage: 'linear-gradient(90deg, rgba(15,7,21,1) 0%, rgba(39,16,55,1) 50%, rgba(15,7,21,1) 100%)'
 };
 
+
+
 export default function HeroSection() {
   const user = useSelector((state) => state.user);
+
   return (
     <div className=" min-h-[95vh] sm:min-h-[650px] flex flex-col-reverse md:flex-row justify-around items-center gap-x-10 p-6 lg:p-0 font-sans" style={ButtonBackground} id='home'>
       {/* text, button and links  */}
@@ -27,7 +30,7 @@ export default function HeroSection() {
                stiffness: 30,
                duration: 1,
        }}
-        className='text-white text-xl sm:text-2xl font-semibold'>I am {user?.name} <span className="text-xs font-medium">( MERN Stack Developer || Flutter Developer || Bug Fixer 🐞)</span></motion.h5>
+        className='text-white text-xl sm:text-2xl font-semibold'>I am {user?.name} <span className="text-xs font-medium">{user.jobSubTitle}</span></motion.h5>
         <motion.h2 
           initial={{x: "-500px", opacity: "0"}}
           animate={{ x: "0px", opacity: "1"}}
@@ -36,7 +39,7 @@ export default function HeroSection() {
                 stiffness: 30,
                 duration: 1,
         }}
-        className='bg-gradient-to-r from-violet-600 to-violet-300 ... inline-block ... text-transparent ... bg-clip-text text-3xl sm:text-4xl md:text-5xl font-extrabold'>Full Stack Web Developer</motion.h2>
+        className='bg-gradient-to-r from-violet-600 to-violet-300 ... inline-block ... text-transparent ... bg-clip-text text-3xl sm:text-4xl md:text-5xl font-extrabold'>{user.jobTitle}</motion.h2>
         <motion.p 
        initial={{x: "-500px", opacity: "0"}}
        animate={{ x: "0px", opacity: "1"}}
@@ -45,11 +48,11 @@ export default function HeroSection() {
                 stiffness: 30,
                 duration: 1,
         }}
-        className='text-gray-300'>Web expert with {new Date().getFullYear() - 2022} years' experience, adept at problem-solving and innovation. Passionate about pushing boundaries and actively engaged in the developer community.</motion.p>
+        className='text-gray-300'>{user.bioOne}</motion.p>
 
         <div className='flex flex-col sm:flex-row items-center gap-x-2 md:gap-x-3 mt-10 transition-all'>
             <motion.a 
-            href="https://drive.google.com/file/d/1b3HIQlO_CrCF_bo9_jCSK0S4O5dI_MDz/view?usp=sharing"
+            href={user.resume}
              initial={{x: "-500px"}}
              animate={{ x: "0px" }}
              transition={{
@@ -70,7 +73,8 @@ export default function HeroSection() {
                     duration: 1,
                     delay: 0.5,
             }}
-            href="https://www.facebook.com/profile.php?id=100086184884085" className="hover:text-white roun] rounded-full bg-violet-700 text-white  transition-all hover:bg-violet-800 p-2 px-2" target="_blank"><FaFacebookF   className='w-8 h-8 p-0.5'/></motion.a>
+            href={`${user.socialLinks['facebook']}`}
+            className="hover:text-white roun] rounded-full bg-violet-700 text-white  transition-all hover:bg-violet-800 p-2 px-2" target="_blank"><FaFacebookF   className='w-8 h-8 p-0.5'/></motion.a>
             <motion.a 
             initial={{y: "-1000px"}}
             animate={{ y: "0px" }}
@@ -80,7 +84,8 @@ export default function HeroSection() {
                    duration: 1,
                    delay: 0.5,
            }}
-            href="https://www.linkedin.com/in/md-abdullah-1907b8173/" className="hover:text-white roun] rounded-full bg-violet-700 text-white  transition-all hover:bg-violet-800 p-2 px-2"target="_blank"><FaLinkedinIn  className='w-8 h-8 p-0.5'/></motion.a>
+           href={`${user.socialLinks['linkedin']}`}
+           className="hover:text-white roun] rounded-full bg-violet-700 text-white  transition-all hover:bg-violet-800 p-2 px-2"target="_blank"><FaLinkedinIn  className='w-8 h-8 p-0.5'/></motion.a>
             <motion.a
             initial={{y: "-1000px"}}
             animate={{ y: "0px" }}
@@ -90,7 +95,8 @@ export default function HeroSection() {
                    duration: 1,
                    delay: 0.5,
            }}
-            href="https://wa.me/01780073651" className="hover:text-white roun] rounded-full bg-violet-700 text-white  transition-all hover:bg-violet-800 p-2 px-2" target="_blank"><FaWhatsapp className='w-8 h-8 p-0.5'/></motion.a> 
+            href={`https://wa.me/${user.socialLinks['whatsApp']}`} 
+            className="hover:text-white roun] rounded-full bg-violet-700 text-white  transition-all hover:bg-violet-800 p-2 px-2" target="_blank"><FaWhatsapp className='w-8 h-8 p-0.5'/></motion.a> 
             
             <motion.a 
             initial={{y: "-1000px"}}
@@ -101,7 +107,8 @@ export default function HeroSection() {
                    duration: 1,
                    delay: 0.5,
            }}
-            href="https://github.com/Md-Abdullah-321" className="hover:text-white roun] rounded-full bg-violet-700 text-white  transition-all hover:bg-violet-800 p-2 px-2" target="_blank"><FaGithub  className='w-8 h-8 p-0.5'/></motion.a>
+            href={`${user.socialLinks['github']}`}
+            className="hover:text-white roun] rounded-full bg-violet-700 text-white  transition-all hover:bg-violet-800 p-2 px-2" target="_blank"><FaGithub  className='w-8 h-8 p-0.5'/></motion.a>
             </div>
         </div>
       </div>
@@ -117,7 +124,7 @@ export default function HeroSection() {
       }}
       >
         <Image
-            src="https://firebasestorage.googleapis.com/v0/b/personal-portfolio-1b57c.appspot.com/o/user%2FMd%20Abdullah.jpg?alt=media&token=ed37ab31-93a6-471a-9c59-7bbe927236f2"
+            src={user.profilePicture}
             alt="Md Abdullah"
             width={1000}
             height={1000}

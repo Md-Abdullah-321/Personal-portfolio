@@ -6,6 +6,7 @@ import { FiPhone } from "react-icons/fi";
 import { IoMailUnreadOutline } from "react-icons/io5";
 import { SlLocationPin } from "react-icons/sl";
 import { VscGithub } from "react-icons/vsc";
+import { useSelector } from "react-redux";
 
 const init = {
     name: "",
@@ -15,6 +16,7 @@ const init = {
 }
 
 export default function Contact() {
+    const user = useSelector((state) => state.user);
     const [formData, setFormData] = useState({...init});
 
     const handleChange = (e) => {
@@ -59,8 +61,8 @@ export default function Contact() {
                         {/* text  */}
                         <div>
                             <h4 className="text-gray-600 font-semibold uppercase">Mail Me</h4>
-                            <p className="text-white text-sm">abdullah.dev.it@gmail.com</p>
-                            <p className="text-white text-sm">md201945@gmail.com</p>
+                            <p className="text-white text-sm">{user.email}</p>
+                            <p className="text-white text-sm">{user.secondaryEmail}</p>
                         </div>
                     </div>
 
@@ -72,8 +74,8 @@ export default function Contact() {
                         {/* text  */}
                         <div>
                             <h4 className="text-gray-600 font-semibold uppercase">Contact Me</h4>
-                            <p className="text-white text-sm">+880 17800 73651</p>
-                            <p className="text-white text-sm">+880 16457 39121</p>
+                            <p className="text-white text-sm">{user.phoneNumbers[0].slice(0,4) + " "+ user.phoneNumbers[0].slice(4, 9) + " " + user.phoneNumbers[0].slice(9)}</p>
+                            <p className="text-white text-sm">{user.phoneNumbers[1].slice(0,4) + " "+ user.phoneNumbers[1].slice(4, 9) + " " + user.phoneNumbers[1].slice(9)}</p>
                         </div>
                     </div>
 
