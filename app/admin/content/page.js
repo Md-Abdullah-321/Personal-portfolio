@@ -6,8 +6,8 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
 function Content() {
-  const user = useSelector((state) => state.user);
   const router = useRouter();
+  const user = useSelector((state) => state.user);
 
   useEffect(() => {
       if(!user){

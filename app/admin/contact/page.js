@@ -16,9 +16,9 @@ function Contact() {
   });
 
 
-  const user = useSelector((state) => state.user);
   const modalRef = useRef(null);
   const modalContentRef = useRef(null);
+  const user = useSelector((state) => state.user);
 
   const fetchMessages = async () => {
     try {

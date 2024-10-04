@@ -19,9 +19,9 @@ const init = {
 export default function Login() {
   const [formData, setFormData] = useState({...init});
   const [backgroundImage, setBackgroundImage] = useState('');
+  const user = useSelector((state) => state.user);
   const router = useRouter();
 
-  const user = useSelector((state) => state.user);
   const dispatch = useDispatch();  
 
   useEffect(() => {
