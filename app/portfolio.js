@@ -8,7 +8,7 @@ export default function Portfolio() {
 
     useEffect(() => {
         const fetchProject = async () => {
-            const res = await fetch("https://portfolio-server-c0fa.onrender.com/api/project");
+            const res = await fetch("https://backend.server.mdabdullah.info/api/project");
             const data = await res.json();
             setProjects([...data.payload]);
         }

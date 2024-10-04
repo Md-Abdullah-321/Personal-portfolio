@@ -49,7 +49,7 @@ export default function Login() {
       }
 
       try {
-        const response = await fetch("https://portfolio-server-c0fa.onrender.com/api/auth/", {
+        const response = await fetch("https://backend.server.mdabdullah.info/api/auth/", {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

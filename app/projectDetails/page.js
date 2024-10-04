@@ -26,7 +26,7 @@ function ProjectDetailsContent() {
 
   useEffect(() => {
     const fetchProject = async () => {
-      const res = await fetch(`https://portfolio-server-c0fa.onrender.com/api/project/${id}`);
+      const res = await fetch(`https://backend.server.mdabdullah.info/api/project/${id}`);
       const data = await res.json();
       setProject({ ...data?.payload });
       setFeatureImage(data?.payload?.projectImages[0]);

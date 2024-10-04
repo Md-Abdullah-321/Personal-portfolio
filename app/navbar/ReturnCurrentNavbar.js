@@ -14,7 +14,6 @@ export const ReturnCurrentNavbar = () => {
     const handleResize = () => setWidth(window.innerWidth);
 
     if (typeof window !== 'undefined') {
-      // Set initial width
       setWidth(window.innerWidth);
       window.addEventListener('resize', handleResize);
 

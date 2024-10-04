@@ -59,12 +59,12 @@ function Settings() {
 
      // Send POST request
      try {
-      const token = localStorage.getItem('token');
+      // const token = localStorage.getItem('token');
 
-      const response = await fetch(`https://portfolio-server-c0fa.onrender.com/api/user/`, {
+      const response = await fetch(`https://backend.server.mdabdullah.info/api/user/`, {
         method: 'PUT',
         headers: {
-          'Authorization': `Bearer ${token}`, 
+          // 'Authorization': `Bearer ${token}`, 000000
           'Content-Type': 'application/json',
         },
         credentials: 'include', 

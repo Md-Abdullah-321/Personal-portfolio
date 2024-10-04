@@ -22,7 +22,7 @@ function Contact() {
 
   const fetchMessages = async () => {
     try {
-      const res = await fetch('https://portfolio-server-c0fa.onrender.com/api/message/');
+      const res = await fetch('https://backend.server.mdabdullah.info/api/message/');
       if (!res.ok) {
         throw new Error('Failed to fetch messages');
       }
@@ -48,7 +48,7 @@ function Contact() {
   };
 
   const seenComponent = async (id) => {
-    await fetch(`https://portfolio-server-c0fa.onrender.com/api/message/seen/${id}`);
+    await fetch(`https://backend.server.mdabdullah.info/api/message/seen/${id}`);
     setMessages(prevMessages => prevMessages.map(item => {
       if (item._id === id) {
         return { ...item, seen: true };
@@ -68,7 +68,7 @@ function Contact() {
   const deleteModal = async (id) => {
     const isConfirm = window.confirm("Are you sure to delete this message?");
     if(isConfirm){
-      await fetch(`https://portfolio-server-c0fa.onrender.com/api/message/${id}`, {
+      await fetch(`https://backend.server.mdabdullah.info/api/message/${id}`, {
         method: 'DELETE'
       });
       setMessages(prevMessages => prevMessages.filter(item => item._id !== id));

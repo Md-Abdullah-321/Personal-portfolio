@@ -23,7 +23,7 @@ function Projects() {
 
     useEffect(() => {
         const fetchProject = async () => {
-            const res = await fetch("https://portfolio-server-c0fa.onrender.com/api/project");
+            const res = await fetch("https://backend.server.mdabdullah.info/api/project");
             const data = await res.json();
             setProjects([...data.payload]);
         }
@@ -34,7 +34,7 @@ function Projects() {
     const handleDeleteProject = async (id) => {
       const isAgree = confirm("Are you sure to delete this project?");
       if(isAgree){
-       const response = await fetch(`https://portfolio-server-c0fa.onrender.com/api/project/${id}`, {
+       const response = await fetch(`https://backend.server.mdabdullah.info/api/project/${id}`, {
            method: "DELETE"
        });
 

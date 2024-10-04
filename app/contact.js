@@ -37,7 +37,7 @@ export default function Contact() {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(formData)
         };
-        const response = await fetch('https://portfolio-server-c0fa.onrender.com/api/message', requestOptions);
+        const response = await fetch('https://backend.server.mdabdullah.info/api/message', requestOptions);
         const data = await response.json();
         alert(data.message);
     }

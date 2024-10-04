@@ -164,13 +164,13 @@ function CreateNewProject() {
     
         // Send POST request
         try {
-            const response = postData.id ? await fetch(`https://portfolio-server-c0fa.onrender.com/api/project/${postData.id}`, {
+            const response = postData.id ? await fetch(`https://backend.server.mdabdullah.info/api/project/${postData.id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(postData),
-            }) : await fetch('https://portfolio-server-c0fa.onrender.com/api/project/', {
+            }) : await fetch('https://backend.server.mdabdullah.info/api/project/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
