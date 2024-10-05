@@ -1,121 +1,82 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { BsFillSendFill } from "react-icons/bs";
-import { FaBars } from "react-icons/fa";
-import { FaArrowRight, FaEarthAsia } from "react-icons/fa6";
-import { GiSettingsKnobs } from "react-icons/gi";
-import { IoClose } from "react-icons/io5";
-import { MdContentPasteSearch, MdDashboardCustomize } from "react-icons/md";
-
 import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { BsFillSendFill } from "react-icons/bs";
+import { FaEarthAsia } from "react-icons/fa6";
+import { FiSettings } from "react-icons/fi";
+import { MdContentPasteSearch, MdDashboardCustomize } from "react-icons/md";
 import { useSelector } from 'react-redux';
-function Sidebar() {
-  const [screenWidth, setScreenWidth] = useState(0);
-  const [sidebar, setSidebar] = useState(false);
+
+function Sidebar({ sidebar = false }) {
   const pathname = usePathname();
   const user = useSelector((state) => state.user);
 
-
-    useEffect(() => {
-      const updateScreenWidth = () => setScreenWidth(window.innerWidth);
-      updateScreenWidth();
-      window.addEventListener('resize', updateScreenWidth);
-      return () => window.removeEventListener('resize', updateScreenWidth);
-    }, []);
-    useEffect(() => {
-        const style = document.createElement('style');
-        style.innerHTML = `
-          .button_slide {
-            letter-spacing: 1px;
-            display: flex;
-            cursor: pointer;
-            box-shadow: inset 0 0 0 0 #2E1065;
-            -webkit-transition: ease-out 0.4s;
-            -moz-transition: ease-out 0.4s;
-            transition: ease-out 0.8s;
-          }
-          .button_slide:hover {
-            box-shadow: inset 400px 0 0 0 #2E1065;
-          }
-          .arrow_right {
-            left: -20px; 
-            opacity: 0;
-            transition: left 1s ease, opacity 1s ease; 
-          }
-    
-          .hover-container:hover .arrow_right {
-            left: 0;
-            opacity: 1;
-          }
-
-          .sidebar_position {
-            left: -400px;
-            transition:  0.8s;
-          }
-          
-          .show_sidebar {
-            left: 0;
-            transition: ease-out 0.8s; 
-          }
-          
-        `;
-        document.head.appendChild(style);
-        return () => {
-          document.head.removeChild(style);
-        };
-      }, []);
-    return <>
-    {screenWidth < 1024 && !sidebar && <div className=' bg-violet-600 h-10 flex justify-center items-center w-12 sm:w-14 m-2 rounded-sm cursor-pointer absolute' onClick={() => setSidebar(true)}><FaBars className='w-6 h-6 sm:w-8 sm:h-8 text-white'/></div>}
-    <div className={screenWidth < 1024 ? sidebar ? "show_sidebar w-[300px] h-screen bg-violet-600 flex flex-col absolute rounded-tr-lg rounded-br-lg z-50": "sidebar_position w-[300px] h-screen bg-violet-600 flex flex-col absolute rounded-tr-lg rounded-br-lg z-50": "w-[300px] h-screen bg-violet-600 flex flex-col rounded-tr-lg rounded-br-lg z-50 fixed"}>
-        {/* header  */}
-        <div className="h-32 w-full bg-white border-2 border-violet-600 shadow-md flex items-center justify-around rounded-lg">
-        <div className='w-[90px] h-[90px] rounded-full border-2 border-violet-600 flex justify-center items-center'>
-        {screenWidth < 1024 && <IoClose className='absolute top-0 right-0 w-8 h-8 m-2 bg-gray-200 rounded-sm cursor-pointer' onClick={() => setSidebar(false)}/>}
-        <Image
-              className='w-[85px] h-[85px] rounded-full object-cover'
-               src={user?.profilePicture || ""}
-               width={1024}
-               height={1024}
-               alt="Md Abdullah Login page Image"
-            />
+  return (
+    <div className={`${sidebar ? 'w-[300px]' : 'w-20'} h-screen bg-violet-600 flex flex-col rounded-tr-lg rounded-br-lg z-50 fixed left-0`}>
+      {/* Header */}
+      <div className={`${sidebar? 'h-32' : 'h-20'} w-full bg-white border-2 border-violet-600 shadow-md flex flex-col items-center justify-around rounded-lg`}>
+        <div className={`${sidebar ? 'w-[90px] h-[90px]' : 'w-16 h-16'} rounded-full border-2 border-violet-600 flex justify-center items-center`}>
+          <Image
+            className='w-full h-full rounded-full object-cover'
+            src={user?.profilePicture || ""}
+            width={1024}
+            height={1024}
+            alt="Md Abdullah's Profile Picture"
+          />
         </div>
-        <h1 className='text-lg md:text-2xl font-extrabold'>Md Abdullah</h1>
-        </div>
+        {sidebar && <h1 className='text-lg md:text-2xl font-extrabold text-violet-600'>Md Abdullah</h1>}
+      </div>
 
-        {/* Menu  */}
-        <div className='p-2 xl:p-4 flex flex-col text-violet-950'>
-            <div className={pathname.endsWith("/admin")? ' bg-violet-950 text-white p-2 flex items-center gap-x-4 mt-4 mb-1': 'flex items-center gap-x-4 mt-4 hover:bg-violet-950 hover:text-white p-2 button_slide mb-1'}>
-                <MdDashboardCustomize className='w-6 h-6 sm:w-8 sm:h-8'/>
-                <Link href="/admin" className='text-2xl uppercase font-medium'>Dashboard</Link> 
+      {/* Menu */}
+      <div className='p-2 xl:p-4 flex flex-col'>
+        {menuItems.map(item => (
+          <Link 
+            href={item.path}
+            key={item.path} 
+            className={`${
+              pathname.endsWith(item.path) 
+              ? 'bg-violet-950 text-white' 
+              : 'text-gray-100 bg-violet-50 bg-opacity-10 hover:bg-violet-950 hover:text-white'
+            } flex items-center gap-x-4 mt-4 mb-1 p-2 rounded-md cursor-pointer transition-colors duration-200 ease-in-out`}
+          >
+            <div className={`${pathname.endsWith(item.path) ? 'text-white' : 'text-gray-100 hover:text-white'}`}>
+              {item.icon}
             </div>
-            <hr className='w-full'/>
-            <div className={pathname.endsWith("/content")? ' bg-violet-950 text-white p-2 flex items-center gap-x-4 mt-4 mb-1': 'button_slide flex items-center gap-x-4 mt-4 mb-1 hover:bg-violet-950 hover:text-white p-2'}>
-                <MdContentPasteSearch className='w-6 h-6 sm:w-8 sm:h-8'/>
-                <Link href="/admin/content" className='text-2xl uppercase font-medium'>Content</Link> 
-            </div>
-            <hr className='w-full'/>
-            <div className={pathname.endsWith("/projects")? ' bg-violet-950 text-white p-2 flex items-center gap-x-4 mt-4 mb-1': 'flex items-center gap-x-4 mt-4 mb-1 hover:bg-violet-950 hover:text-white p-2 button_slide'}>
-                <FaEarthAsia className='w-6 h-6 sm:w-8 sm:h-8'/>
-                <Link href="/admin/projects" className='text-2xl uppercase font-medium'>Projects</Link> 
-            </div>
-            <hr className='w-full'/>
-            <div className={pathname.endsWith("/contact")? ' bg-violet-950 text-white p-2 flex items-center gap-x-4 mt-4 mb-1': 'flex items-center gap-x-4 mt-4 mb-1 hover:bg-violet-950 hover:text-white p-2 button_slide'}>
-                <BsFillSendFill className='w-6 h-6 sm:w-8 sm:h-8'/>
-                <Link href="/admin/contact" className='text-2xl uppercase font-medium'>Contact</Link> 
-            </div>
-            <hr className='w-full'/>
-        </div>
-
-        <div className='h-3/6'></div>
-        {/* Footer  */}
-        <div className='h-16 w-full bg-white border-2 border-violet-600 shadow-md flex items-center justify-around rounded-lg hover-container'  >
-            <GiSettingsKnobs className='w-6 h-6 sm:w-8 sm:h-8'/>
-                <Link href="/admin/settings" className='text-2xl uppercase font-medium'>Settings</Link> 
-            <FaArrowRight className='w-6 h-6 sm:w-8 sm:h-8 relative arrow_right'/>
-        </div>
+            {sidebar && <Link href={item.path} className='text-xl font-medium'>{item.title}</Link>}
+          </Link>
+        ))}
+      </div>
     </div>
-    </>;
+  );
 }
+
+// Define menu items
+const menuItems = [
+  {
+    title: "Dashboard",
+    path: "/admin",
+    icon: <MdDashboardCustomize className='w-6 h-6 sm:w-8 sm:h-8' />,
+  },
+  {
+    title: "Content",
+    path: "/admin/content",
+    icon: <MdContentPasteSearch className='w-6 h-6 sm:w-8 sm:h-8' />,
+  },
+  {
+    title: "Projects",
+    path: "/admin/projects",
+    icon: <FaEarthAsia className='w-6 h-6 sm:w-8 sm:h-8' />,
+  },
+  {
+    title: "Contact",
+    path: "/admin/contact",
+    icon: <BsFillSendFill className='w-6 h-6 sm:w-8 sm:h-8' />,
+  },
+  {
+    title: "Settings",
+    path: "/admin/settings",
+    icon:  <FiSettings className='w-6 h-6 sm:w-8 sm:h-8' />,
+  }
+];
 
 export default Sidebar;

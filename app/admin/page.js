@@ -1,12 +1,11 @@
 "use client"
 
-import Loader from "@/components/loading";
-import Sidebar from "@/components/sidebar";
+import { getCookie } from "@/lib/getCookie";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
-export default function AdminDashboard() {
+export default function page() {
     const [loading, setLoading] = useState(true);
     const user = useSelector((state) => state.user);
     
@@ -21,18 +20,13 @@ export default function AdminDashboard() {
 
     useEffect(() => {
         //Temprary Solution:
-        if(!user){
+        if(!getCookie("accessToken")){
             return router.push('/admin/login', { scroll: false });
         }
     }, []);
     
-    return loading ? <Loader/> : (
-      <div className="w-full min-h-screen flex justify-between">
-         <Sidebar/>
-         <div className="lg:w-[300px] hidden lg:block"></div>
-        <div className="h-screen w-10/12">
-
-        </div>
-      </div>
-    )
+    return (
+      <div className="w-full min-h-screen flex justify-between bg-violet-50">
+          
+      </div>)
   }

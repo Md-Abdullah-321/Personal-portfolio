@@ -1,5 +1,6 @@
 "use client"
 
+import { BASE_URL } from "@/env";
 import { useEffect, useState } from "react";
 import ImageSlider from "./slider/slider";
 
@@ -8,7 +9,7 @@ export default function Portfolio() {
 
     useEffect(() => {
         const fetchProject = async () => {
-            const res = await fetch("https://backend.server.mdabdullah.info/api/project");
+            const res = await fetch(`${BASE_URL}/project`);
             const data = await res.json();
             setProjects([...data.payload]);
         }

@@ -21,12 +21,8 @@ export const ReturnCurrentNavbar = () => {
     }
   }, []);
 
-  if (width === null) {
-    return <div>Loading...</div>;
-  }
-
   return (
-    <Suspense  fallback={<div>Loading...</div>}>
+    <Suspense>
       {width > 1024 ? (
         <Navbar />
       ) : width >= 768 ? (

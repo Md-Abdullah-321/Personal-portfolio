@@ -1,5 +1,6 @@
 "use client"
 
+import { BASE_URL } from "@/env";
 import { setUser } from "@/features/store";
 import { motion } from "framer-motion";
 import Image from 'next/image';
@@ -24,9 +25,11 @@ export default function HeroSection() {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await fetch("https://backend.server.mdabdullah.info/api/user");
+        const res = await fetch(`${BASE_URL}/user`);
         const data = await res.json();
 
+        console.log(data);
+        
         if (data.success) {
           dispatch(setUser(data.payload));
         }
@@ -92,7 +95,7 @@ export default function HeroSection() {
                     duration: 1,
                     delay: 0.5,
             }}
-            href={`${user?.socialLinks['facebook']}`}
+            href={`${user?.socialLinks?.facebook}`}
             className="hover:text-white roun] rounded-full bg-violet-700 text-white  transition-all hover:bg-violet-800 p-2 px-2" target="_blank"><FaFacebookF   className='w-8 h-8 p-0.5'/></motion.a>
             <motion.a 
             initial={{y: "-1000px"}}
@@ -103,7 +106,7 @@ export default function HeroSection() {
                    duration: 1,
                    delay: 0.5,
            }}
-           href={`${user?.socialLinks['linkedin']}`}
+           href={`${user?.socialLinks?.linkedin}`}
            className="hover:text-white roun] rounded-full bg-violet-700 text-white  transition-all hover:bg-violet-800 p-2 px-2"target="_blank"><FaLinkedinIn  className='w-8 h-8 p-0.5'/></motion.a>
             <motion.a
             initial={{y: "-1000px"}}
@@ -114,7 +117,7 @@ export default function HeroSection() {
                    duration: 1,
                    delay: 0.5,
            }}
-            href={`https://wa.me/${user?.socialLinks['whatsApp']}`} 
+            href={`https://wa.me/${user?.socialLinks?.whatsApp}`} 
             className="hover:text-white roun] rounded-full bg-violet-700 text-white  transition-all hover:bg-violet-800 p-2 px-2" target="_blank"><FaWhatsapp className='w-8 h-8 p-0.5'/></motion.a> 
             
             <motion.a 
@@ -126,7 +129,7 @@ export default function HeroSection() {
                    duration: 1,
                    delay: 0.5,
            }}
-            href={`${user?.socialLinks['github']}`}
+            href={`${user?.socialLinks?.github}`}
             className="hover:text-white roun] rounded-full bg-violet-700 text-white  transition-all hover:bg-violet-800 p-2 px-2" target="_blank"><FaGithub  className='w-8 h-8 p-0.5'/></motion.a>
             </div>
         </div>

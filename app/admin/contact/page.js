@@ -1,6 +1,7 @@
 "use client"
 import ShowContentModal from '@/components/showContentModal';
-import Sidebar from '@/components/sidebar';
+import { BASE_URL } from '@/env';
+import { getCookie } from '@/lib/getCookie';
 import { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import ContactCard from './contactCard';
@@ -22,11 +23,19 @@ function Contact() {
 
   const fetchMessages = async () => {
     try {
-      const res = await fetch('https://backend.server.mdabdullah.info/api/message/');
-      if (!res.ok) {
-        throw new Error('Failed to fetch messages');
-      }
-      const data = await res.json();
+      const res = await fetch(`${BASE_URL}/message`, {
+        method: "GET",
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: "include",
+      });
+      
+      // if (!res.ok) {
+        //   throw new Error('Failed to fetch messages');
+        // }
+        const data = await res.json();
+        console.log(data);
       setMessages([...data.payload]);
     } catch (error) {
       console.error('Error fetching messages:', error);
@@ -34,7 +43,7 @@ function Contact() {
   };
 
   useEffect(() => {
-    if (!user) {
+    if (!getCookie("accessToken")) {
       return window.location.href = '/admin/login'; 
     }
 
@@ -48,7 +57,7 @@ function Contact() {
   };
 
   const seenComponent = async (id) => {
-    await fetch(`https://backend.server.mdabdullah.info/api/message/seen/${id}`);
+    await fetch(`${BASE_URL}/message/seen/${id}`);
     setMessages(prevMessages => prevMessages.map(item => {
       if (item._id === id) {
         return { ...item, seen: true };
@@ -68,7 +77,7 @@ function Contact() {
   const deleteModal = async (id) => {
     const isConfirm = window.confirm("Are you sure to delete this message?");
     if(isConfirm){
-      await fetch(`https://backend.server.mdabdullah.info/api/message/${id}`, {
+      await fetch(`${BASE_URL}/message/${id}`, {
         method: 'DELETE'
       });
       setMessages(prevMessages => prevMessages.filter(item => item._id !== id));
@@ -77,11 +86,8 @@ function Contact() {
   };
 
   return (
-    <div className="w-full min-h-screen flex justify-between relative">
-      <Sidebar />
-      <div className="lg:w-[300px] hidden lg:block"></div>
-      <div className="h-screen lg:w-10/12 p-2 mt-14 lg:mt-0 sm:p-10 relative">
-        <div className="flex items-start gap-4 w-full flex-wrap">
+    <div className="w-full min-h-screen p-10 flex justify-center items-center bg-violet-50">
+        <div className="flex items-center justify-center gap-2 w-full flex-wrap">
           {messages.length > 0 && messages.map(message => (
             <ContactCard
               key={message._id}
@@ -103,7 +109,6 @@ function Contact() {
             </div>
           </div>
         )}
-      </div>
     </div>
   );
 }
