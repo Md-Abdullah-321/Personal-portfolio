@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
-export default function page() {
+export default function AdminDashboard() {
     const [loading, setLoading] = useState(true);
     const user = useSelector((state) => state.user);
     
@@ -19,11 +19,13 @@ export default function page() {
     }, []);
 
     useEffect(() => {
-        //Temprary Solution:
-        if(!getCookie("accessToken")){
-            return router.push('/admin/login', { scroll: false });
+      // Ensure the code runs only on the client side
+      if (typeof window !== 'undefined') {
+        if (!getCookie('accessToken')) {
+          router.push('/admin/login');
         }
-    }, []);
+      }
+    }, [router]);
     
     return (
       <div className="w-full min-h-screen flex justify-between bg-violet-50">

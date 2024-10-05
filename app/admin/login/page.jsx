@@ -41,8 +41,6 @@ export default function Login() {
       }
     })
   }
-
-  console.log(getCookie("accessToken"));
   
   const handleSubmit = async (e) => {
       e.preventDefault();
