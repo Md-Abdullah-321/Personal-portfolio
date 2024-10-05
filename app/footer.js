@@ -45,11 +45,8 @@ export default function ReturnFooter() {
     }
   }, []);
 
-  if (width === null) {
-    return <div>Loading...</div>;
-  }
   return (
-    <Suspense  fallback={<div>Loading...</div>}>
+    <Suspense>
     {width >= 768 && <Footer/> }
   </Suspense>
 );

@@ -1,7 +1,7 @@
 
 function ContactCard({ message, openModal, deleteModal }) {
   return (
-    <div className="w-full sm:w-80 flex justify-between bg-slate-100 h-32 p-2 rounded-sm">
+    <div className="w-full sm:w-80 flex justify-between bg-white h-32 p-2 rounded-sm">
       <div className="w-5/6">
         <h3 className="font-semibold">{message?.name}</h3>
         <p className="line-clamp-1 text-xs mt-2"><span className="font-semibold">Subject:</span> {message.subject}</p>

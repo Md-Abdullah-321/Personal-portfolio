@@ -1,6 +1,8 @@
 "use client"
 
+import { BASE_URL } from "@/env";
 import { storage } from "@/lib/firebase";
+import { getCookie } from "@/lib/getCookie";
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { useEffect, useState } from "react";
 import { v4 } from 'uuid';
@@ -23,6 +25,10 @@ function CreateNewProject() {
     const [projectImages, setProjectImages] = useState(null);
 
     useEffect(() => {
+        if(!getCookie("accessToken")){
+            return router.push('/admin/login', { scroll: false });
+        }
+        
         const project = JSON.parse(localStorage.getItem("project"));
 
         if(project){
@@ -164,13 +170,13 @@ function CreateNewProject() {
     
         // Send POST request
         try {
-            const response = postData.id ? await fetch(`https://portfolio-server-c0fa.onrender.com/api/project/${postData.id}`, {
+            const response = postData.id ? await fetch(`${BASE_URL}/project/${postData.id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(postData),
-            }) : await fetch('https://portfolio-server-c0fa.onrender.com/api/project/', {
+            }) : await fetch(`${BASE_URL}/project/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

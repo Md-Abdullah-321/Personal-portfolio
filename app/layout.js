@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
   useEffect(() => {
     const handleRouteChange = (url) => {
       if (typeof window !== 'undefined' && window.gtag) {
-        window.gtag('config', 'G-EYTDVT5GPF', {
+        window.gtag('config', 'G-WFQKYNQLCZ', {
           page_path: url,
         });
       }
@@ -28,7 +28,7 @@ export default function RootLayout({ children }) {
       window.GA_INITIALIZED = true;
       // Initialize GA4
       const script = document.createElement('script');
-      script.src = `https://www.googletagmanager.com/gtag/js?id=G-EYTDVT5GPF`;
+      script.src = `https://www.googletagmanager.com/gtag/js?id=G-WFQKYNQLCZ`;
       script.async = true;
       document.head.appendChild(script);
 
@@ -37,7 +37,7 @@ export default function RootLayout({ children }) {
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', 'G-EYTDVT5GPF', {
+        gtag('config', 'G-WFQKYNQLCZ', {
           page_path: window.location.pathname,
         });
       `;
@@ -47,10 +47,6 @@ export default function RootLayout({ children }) {
     if (typeof window !== 'undefined') {
       handleRouteChange(window.location.pathname);
     }
-
-    return () => {
-      // Clean up if needed (e.g., removing event listeners)
-    };
   }, [pathname]);
 
   const isBrowser = typeof window !== 'undefined';

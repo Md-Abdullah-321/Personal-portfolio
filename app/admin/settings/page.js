@@ -1,6 +1,6 @@
 "use client"
 
-import Sidebar from "@/components/sidebar";
+import { BASE_URL } from "@/env";
 import { clearUser, setUser } from "@/features/store";
 import { storage } from "@/lib/firebase";
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
@@ -97,7 +97,7 @@ function Settings() {
     // Send POST request
     try {
       
-      const response = await fetch(`https://portfolio-server-c0fa.onrender.com/api/user/`, {
+      const response = await fetch(`${BASE_URL}/user/`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -129,7 +129,7 @@ function Settings() {
     
     if(isAgree){
       try {
-        const response = await fetch(`https://portfolio-server-c0fa.onrender.com/api/auth/signout`, {
+        const response = await fetch(`${BASE_URL}/auth/signout`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -157,8 +157,8 @@ function Settings() {
   
   return (
     <div className="w-full min-h-screen flex justify-between">
-         <Sidebar/>
-         <div className="lg:w-[300px] hidden lg:block"></div>
+         {/* <Sidebar/>
+         <div className="lg:w-[300px] hidden lg:block"></div> */}
         <div className="h-screen w-full md:w-10/12 my-16 md:my-20 mx-auto px-2">
             {/* Personal info */}
             <div className="bg-violet-200 w-full lg:w-2/3 mx-auto p-4 rounded-md relative">

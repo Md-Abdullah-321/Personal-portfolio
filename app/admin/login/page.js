@@ -1,10 +1,12 @@
 "use client"
 
+import { BASE_URL } from '@/env';
 import { setUser } from '@/features/store';
+import { getCookie } from '@/lib/getCookie';
 import Image from 'next/image';
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 const ButtonBackground = {
   background: 'rgb(66,29,136)',
@@ -19,13 +21,12 @@ const init = {
 export default function Login() {
   const [formData, setFormData] = useState({...init});
   const [backgroundImage, setBackgroundImage] = useState('');
-  const user = useSelector((state) => state.user);
   const router = useRouter();
 
   const dispatch = useDispatch();  
 
   useEffect(() => {
-    if(user){
+    if(getCookie("accessToken")){
       return router.push('/admin', { scroll: false });
     }
     const imageUrl = '/login.svg'; 
@@ -41,40 +42,40 @@ export default function Login() {
     })
   }
 
+  console.log(getCookie("accessToken"));
+  
   const handleSubmit = async (e) => {
-    e.preventDefault();
-  
-    if (formData.email === "" || formData.password === "") {
-      return alert("Please, fill in the blank fields.");
-    }
-  
-    try {
-      const response = await fetch("https://portfolio-server-c0fa.onrender.com/api/auth/signin", {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        credentials: 'include', 
-        body: JSON.stringify({ email: formData.email, password: formData.password.trim() }),
-      });
-  
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+      e.preventDefault();
+
+      if(formData.email == " " || formData.password === " "){
+        return alert("Please, fill the black fields.")
       }
-      
-      const data = await response.json();
-      
-      if (data.success) {
-        alert(data.messege);
-        delete data.payload.token;
-        dispatch(setUser(data.payload));
-        router.push('/admin', { scroll: false });
+
+      try {
+        const response = await fetch(`${BASE_URL}/auth/signin`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          credentials: "include",
+          body: JSON.stringify({ email: formData.email, password: formData.password })
+        });
+        
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        
+        if(data.success){
+           alert(data.messege);
+           dispatch(setUser(data.payload));
+           return router.push('/admin', { scroll: false });
+        }
+      } catch (error) {
+        console.error('Error:', error);
       }
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  };
-  
+  }
 
  
   return (

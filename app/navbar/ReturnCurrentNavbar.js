@@ -14,7 +14,6 @@ export const ReturnCurrentNavbar = () => {
     const handleResize = () => setWidth(window.innerWidth);
 
     if (typeof window !== 'undefined') {
-      // Set initial width
       setWidth(window.innerWidth);
       window.addEventListener('resize', handleResize);
 
@@ -22,12 +21,8 @@ export const ReturnCurrentNavbar = () => {
     }
   }, []);
 
-  if (width === null) {
-    return <div>Loading...</div>;
-  }
-
   return (
-    <Suspense  fallback={<div>Loading...</div>}>
+    <Suspense>
       {width > 1024 ? (
         <Navbar />
       ) : width >= 768 ? (

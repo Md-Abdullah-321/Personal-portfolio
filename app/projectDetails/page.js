@@ -2,6 +2,7 @@
 /* eslint-disable react/jsx-key */
 "use client";
 
+import { BASE_URL } from "@/env";
 import { useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
 import { IoIosShareAlt } from "react-icons/io";
@@ -13,7 +14,7 @@ const ButtonBackground = {
 
 export default function ProjectDetails() {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense>
       <ProjectDetailsContent />
     </Suspense>
   );
@@ -26,7 +27,7 @@ function ProjectDetailsContent() {
 
   useEffect(() => {
     const fetchProject = async () => {
-      const res = await fetch(`https://portfolio-server-c0fa.onrender.com/api/project/${id}`);
+      const res = await fetch(`${BASE_URL}/project/${id}`);
       const data = await res.json();
       setProject({ ...data?.payload });
       setFeatureImage(data?.payload?.projectImages[0]);

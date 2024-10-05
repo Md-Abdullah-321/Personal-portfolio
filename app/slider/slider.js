@@ -64,7 +64,7 @@ export default function ImageSlider({projects}) {
       > 
       {projects.map((project, index) => (
         <SwiperSlide key={index} className='w-full transition-all cursor-pointer rounded-md min-h-80' style={shadow}>
-          <Image src={project.projectImages[Math.floor(Math.random() * 5)]} alt="" srcSet="" className='w-full rounded-md object-cover object-center self-center border border-violet-200 overflow-clip' width={1920} height={1080}/>
+          <Image src={project.projectImages[Math.floor(Math.random() * 4)]} alt="" srcSet="" className='w-full rounded-md object-cover object-center self-center border border-violet-200 overflow-clip' width={1920} height={1080}/>
           <div className='fixed bottom-0 h-20 bg-violet-100 opacity-90 w-full text-start p-4 text-sm flex flex-col justify-center'>
             <p className='font-semibold mr-2'>Project Name : <span className='text-violet-700 capitalize'>  {project.title}</span>
             </p>
