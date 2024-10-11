@@ -41,8 +41,6 @@ export default function Login() {
       }
     })
   }
-
-  console.log(getCookie("accessToken"));
   
   const handleSubmit = async (e) => {
       e.preventDefault();
@@ -80,7 +78,7 @@ export default function Login() {
  
   return (
     <div
-      className="flex justify-center items-center w-full min-h-screen"
+      className="flex justify-center items-center w-full h-screen overflow-hidden"
     >
       <div
       className="md:w-11/12 min-h-screen md:h-[90vh] flex justify-center items-center overflow-auto p-2 sm:p-0"

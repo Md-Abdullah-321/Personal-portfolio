@@ -19,7 +19,7 @@ export default function RootLayout({ children }) {
             {isAdminPath && !isAdminLoginPath && <Sidebar sidebar={sidebar}/>}
             <div className="w-full">
                 {isAdminPath && !isAdminLoginPath && <AdminTopBar handleSidebar={handleSidebar} sidebar={sidebar}/>}
-                <div className={`${sidebar ? 'ml-[300px] overflow-visible h-auto mt-20' : 'ml-20 overflow-visible h-auto mt-20'} ${isAdminLoginPath ? 'h-screen overflow-hidden ml-0 -000mt-0': ''}`}>{children}</div>
+                <div className={`${sidebar ? 'ml-[300px] overflow-visible h-auto mt-20' : 'ml-20 overflow-visible h-auto mt-20'} ${isAdminLoginPath ? 'h-screen overflow-hidden -ml-0 -mt-0': ''}`}>{children}</div>
             </div>
         </body>
       </html>

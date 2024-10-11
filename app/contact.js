@@ -100,10 +100,10 @@ export default function Contact() {
                                 <div>
                                     <h4 className="text-gray-600 font-semibold uppercase">Contact Me</h4>
                                     <p className="text-white text-sm">
-                                        {user?.phoneNumbers?.[0] ? formatPhoneNumber(user.phoneNumbers[0]) : "Phone not available"}
+                                        {user?.phoneNumbers?.[0] ? formatPhoneNumber(user.phoneNumbers[0]) : ""}
                                     </p>
                                     <p className="text-white text-sm">
-                                        {user?.phoneNumbers?.[1] ? formatPhoneNumber(user.phoneNumbers[1]) : "Phone not available"}
+                                        {user?.phoneNumbers?.[1] ? formatPhoneNumber(user.phoneNumbers[1]) : ""}
                                     </p>
                                 </div>
                             </div>
