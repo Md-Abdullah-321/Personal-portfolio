@@ -2,21 +2,10 @@
 
 import { getCookie } from "@/lib/getCookie";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
-export default function page() {
-    const [loading, setLoading] = useState(true);
-    const user = useSelector((state) => state.user);
-    
+export default function AdminDashboard() {
     const router = useRouter();
-    useEffect(() => {
-      const timer = setTimeout(() => {
-        setLoading(false); 
-      }, 2000); 
-  
-      return () => clearTimeout(timer);
-    }, []);
 
     useEffect(() => {
         //Temprary Solution:
