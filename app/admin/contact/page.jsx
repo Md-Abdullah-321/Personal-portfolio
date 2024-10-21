@@ -1,7 +1,6 @@
 "use client"
 import ShowContentModal from '@/components/showContentModal';
 import { BASE_URL } from '@/env';
-import { getCookie } from '@/lib/getCookie';
 import { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import ContactCard from './contactCard';
@@ -20,6 +19,7 @@ function Contact() {
   const modalRef = useRef(null);
   const modalContentRef = useRef(null);
   const user = useSelector((state) => state.user);
+  const isLoggedIn = useSelector((state) => state.userState.isLoggedIn);
 
   const fetchMessages = async () => {
     try {
@@ -43,7 +43,7 @@ function Contact() {
   };
 
   useEffect(() => {
-    if (!getCookie("accessToken")) {
+    if (!isLoggedIn) {
       return window.location.href = '/admin/login'; 
     }
 

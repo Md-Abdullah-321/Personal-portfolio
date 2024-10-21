@@ -1,7 +1,7 @@
 "use client"
 
 import { BASE_URL } from "@/env";
-import { clearUser, setUser } from "@/features/store";
+import { clearUser, clearUserState, setUser } from "@/features/store";
 import { storage } from "@/lib/firebase";
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import Image from "next/image";
@@ -141,6 +141,7 @@ function Settings() {
         if(data.success){
           dispatch(clearUser());
           alert(data.messege);
+          dispatch(clearUserState());
           return router.push('/admin/login', { scroll: false });
         }
         console.log('Response:', data);

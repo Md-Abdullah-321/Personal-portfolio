@@ -2,9 +2,9 @@
 
 import { BASE_URL } from "@/env";
 import { storage } from "@/lib/firebase";
-import { getCookie } from "@/lib/getCookie";
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { v4 } from 'uuid';
 
 const init = {
@@ -23,9 +23,10 @@ function CreateNewProject() {
     const [formData, setFormData] = useState();
     const [featureCount, setFeatureCount] = useState([]);
     const [projectImages, setProjectImages] = useState(null);
+    const isLoggedIn = useSelector((state) => state.userState.isLoggedIn);
 
     useEffect(() => {
-        if(!getCookie("accessToken")){
+        if(!isLoggedIn){
             return router.push('/admin/login', { scroll: false });
         }
         

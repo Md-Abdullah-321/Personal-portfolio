@@ -1,6 +1,5 @@
 "use client"
 
-import { getCookie } from "@/lib/getCookie";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
@@ -8,9 +7,10 @@ import { useSelector } from "react-redux";
 function Content() {
   const router = useRouter();
   const user = useSelector((state) => state.user);
+  const isLoggedIn = useSelector((state) => state.userState.isLoggedIn);
 
   useEffect(() => {
-      if(!getCookie("accessToken")){
+      if(!isLoggedIn){
           return router.push('/admin/login', { scroll: false });
       }
   }, []);

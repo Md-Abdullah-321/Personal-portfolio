@@ -1,7 +1,6 @@
 "use client"
 
 import { BASE_URL } from "@/env";
-import { getCookie } from "@/lib/getCookie";
 import Link from "next/link";
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from "react";
@@ -13,11 +12,12 @@ function Projects() {
   const [projects, setProjects] = useState([]);
   const [tooltip, setTooltip] = useState(false);
   const user = useSelector((state) => state.user);
+  const isLoggedIn = useSelector((state) => state.userState.isLoggedIn);
   const router = useRouter()
 
   useEffect(() => {
       //Temprary Solution:
-      if(!getCookie("accessToken")){
+      if(!isLoggedIn){
           return router.push('/admin/login', { scroll: false });
       }
   }, []);

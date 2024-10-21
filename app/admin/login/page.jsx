@@ -1,12 +1,11 @@
 "use client"
 
 import { BASE_URL } from '@/env';
-import { setUser } from '@/features/store';
-import { getCookie } from '@/lib/getCookie';
+import { setUser, setUserState } from '@/features/store';
 import Image from 'next/image';
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const ButtonBackground = {
   background: 'rgb(66,29,136)',
@@ -19,6 +18,7 @@ const init = {
   password: ""
 }
 export default function Login() {
+  const isLoggedIn = useSelector((state) => state.userState.isLoggedIn);
   const [formData, setFormData] = useState({...init});
   const [backgroundImage, setBackgroundImage] = useState('');
   const router = useRouter();
@@ -26,7 +26,7 @@ export default function Login() {
   const dispatch = useDispatch();  
 
   useEffect(() => {
-    if(getCookie("accessToken")){
+    if(isLoggedIn){
       return router.push('/admin', { scroll: false });
     }
     const imageUrl = '/login.svg'; 
@@ -68,6 +68,7 @@ export default function Login() {
         if(data.success){
            alert(data.messege);
            dispatch(setUser(data.payload));
+           dispatch(setUserState({isLoggedIn: true}));
            return router.push('/admin', { scroll: false });
         }
       } catch (error) {
