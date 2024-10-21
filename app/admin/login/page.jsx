@@ -78,10 +78,10 @@ export default function Login() {
  
   return (
     <div
-      className="flex justify-center items-center w-full h-screen overflow-hidden"
+      className="flex justify-center items-center w-full h-full overflow-hidden"
     >
       <div
-      className="md:w-11/12 min-h-screen md:h-[90vh] flex justify-center items-center overflow-auto p-2 sm:p-0"
+      className="md:w-11/12 h-full flex justify-center items-center overflow-auto p-2 sm:p-0"
         style={{
           backgroundImage: backgroundImage,
           backgroundSize: 'cover',
@@ -89,7 +89,7 @@ export default function Login() {
         }}
       >
         <div className="md:w-11/12  lg:w-10/12 md:h-[75vh] bg-violet-600 rounded-md opacity-80 flex flex-col md:flex-row justify-between items-center">
-            <div className="md:w-7/12 lg:w-4/6 p-10 bg-violet-400 h-[300px] sm:h-full overflow-hidden">
+            <div className="hidden md:block md:w-7/12 lg:w-4/6 p-10 bg-violet-400 h-[300px] sm:h-full overflow-hidden">
               <Image
               className='w-full h-full'
                src={"/login-left.svg"}
