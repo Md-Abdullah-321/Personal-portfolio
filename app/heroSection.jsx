@@ -4,11 +4,12 @@ import { BASE_URL } from "@/env";
 import { setUser } from "@/features/store";
 import { motion } from "framer-motion";
 import Image from 'next/image';
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { FaFacebookF, FaGithub, FaLinkedinIn } from "react-icons/fa";
 import { FaWhatsapp } from "react-icons/fa6";
 import { MdOutlineFileDownload } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
+import Loader from "./loader";
 
 
 const ButtonBackground = {
@@ -20,25 +21,34 @@ const ButtonBackground = {
 
 export default function HeroSection() {
   const user = useSelector((state) => state.user);
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
+    setLoading(true);
     const fetchUser = async () => {
       try {
         const res = await fetch(`${BASE_URL}/user`);
         const data = await res.json();
-
-        console.log(data);
-        
         if (data.success) {
+          setTimeout(() => {
+            setLoading(false);
+          }, 500);
           dispatch(setUser(data.payload));
         }
       } catch (error) {
+        setTimeout(() => {
+          setLoading(false);
+        }, 500);
         console.error('Error fetching user:', error);
       }
     };
     fetchUser();
   }, [])
+
+  if(loading) {
+    return <Loader/>;
+  }
 
   return (
     <div className=" min-h-[95vh] sm:min-h-[650px] flex flex-col-reverse md:flex-row justify-around items-center gap-x-10 p-6 lg:p-0 font-sans" style={ButtonBackground} id='home'>
