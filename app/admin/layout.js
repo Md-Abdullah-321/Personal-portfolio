@@ -15,6 +15,9 @@ export default function RootLayout({ children }) {
   
   return (
     <html lang="en">
+        <head>
+          <title>Md Abdullah - Full Stack Web Developer</title>
+        </head>
         <body className='flex' >
             {isAdminPath && !isAdminLoginPath && <Sidebar sidebar={sidebar}/>}
             <div className="w-full">
