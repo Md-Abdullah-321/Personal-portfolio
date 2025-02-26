@@ -1,18 +1,14 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit';
 import { combineReducers } from 'redux';
 import { persistReducer, persistStore } from 'redux-persist';
-import storage from 'redux-persist/lib/storage'; // Defaults to localStorage
+import storage from 'redux-persist/lib/storage';
 
 const userSlice = createSlice({
-  name: 'user',
-  initialState: { user: null },
+  name: "user",
+  initialState: null,
   reducers: {
-    setUser: (state, action) => {
-      state.user = action.payload;
-    },
-    clearUser: (state) => {
-      state.user = null;
-    },
+    setUser: (state, action) => action.payload, 
+    clearUser: () => null, 
   },
 });
 

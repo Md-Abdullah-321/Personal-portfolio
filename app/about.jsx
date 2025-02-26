@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 
 
 export default function About() {
-  const user = useSelector((state) => state.user);
+  const user = useSelector((state) => state?.user);
   return (
     <div className="lg:w-9/12 mx-auto flex flex-col md:flex-row justify-between items-center md:h-[700px] font-sans px-4 py-20 md:py-0 gap-x-4" id='about'>
       <motion.div

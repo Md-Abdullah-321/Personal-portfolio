@@ -22,19 +22,29 @@ export default function ProjectDetails() {
 
 function ProjectDetailsContent() {
   const [project, setProject] = useState({});
+  const [loading, setLoading] = useState(true);
   const [featureImage, setFeatureImage] = useState(null);
   const id = useSearchParams().get("id");
 
   useEffect(() => {
+    let isMounted = true;
     const fetchProject = async () => {
       const res = await fetch(`${BASE_URL}/project/${id}`);
       const data = await res.json();
-      setProject({ ...data?.payload });
-      setFeatureImage(data?.payload?.projectImages[0]);
-    }
+
+      if (isMounted) {
+        setProject({ ...data?.payload });
+        setFeatureImage(data?.payload?.projectImages[0]);
+        setLoading(false);
+      }
+    };
 
     fetchProject();
+    return () => {
+      isMounted = false;
+    };
   }, [id]);
+
 
 
   return (
